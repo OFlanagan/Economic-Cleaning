@@ -1,14 +1,19 @@
 ---
 title: "Economic Cleaning"
-output: github_document
+output: 
+  github_document:
+    toc: true
+    toc_depth: 2
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(lubridate)
-library(httr)
-library(jsonlite)
+library(wbstats)
+library(knitr)
+library(kableExtra)
+
 ```
 
 ## initial work
@@ -17,7 +22,9 @@ This project is an excercise in data cleaning and data exploration. This project
 This project was inspired by an economic freedom index dataset I found on Kaggle Datasets.
 https://www.kaggle.com/lewisduncan93/the-economic-freedom-index/version/1#
 
-I quite like freedom and it would be interesting, and nice, to identify the relationships between these economic freedom indicators and other important things like economic performance, human well being, corruption, politics, wars, natural disasters, etc.
+I quite like freedom and it would be interesting, and nice, to identify the relationships between these economic freedom indicators and other important things like economic performance, human well being, corruption, politics, wars, natural disasters, environmental impact etc.
+
+NB - for this study we are going to assume that these metrics are in some way true measures of economic freedom.
 The first thing we should do is read the dataset and inspect it.
 
 ```{r }
@@ -93,4 +100,49 @@ linear model to identify general trends
 calculate variance to see increases and decreases
 how does this measure correlate with important things like wealth and health
 
-We can also investigate the other components of the EFI dataset in a similar way. 
+We can also investigate the other components of the EFI dataset in a similar way.
+
+#Dataset #2 - World bank data
+
+The economic freedom data is quite interesting, but it is quite limited in what it tells us. The data is a set of calculated measures which were calculated with the aim of quantifying economic freedom. The goal of this work is to explore the impact of economic freedom.
+
+
+```{r}
+str(wb_cachelist, max.level = 1)
+```
+
+There are 7 dataframes available in the wbstats data list.
+
+```{r}
+kable(wb_cachelist$countries %>% head())
+```
+
+This countries dataset includes a lot of detail which we can join onto our EFI dataset. 
+
+```{r}
+kable(wb_cachelist$indicators %>% head())
+```
+
+The indicators dataframe appears to be a list of all indicators available with descriptions. We will need to do a little more research before we can pick some interesting indicators as there are literally thousands of indicators including zinc prices.
+
+```{r}
+kable(wb_cachelist$sources %>% head())
+```
+
+
+```{r}
+kable(wb_cachelist$datacatalog %>% head())
+
+```
+
+```{r}
+kable(wb_cachelist$topics %>% head())
+```
+
+```{r}
+kable(wb_cachelist$income %>% head())
+```
+
+```{r}
+kable(wb_cachelist$lending %>% head())
+```
