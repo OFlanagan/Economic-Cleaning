@@ -1,0 +1,96 @@
+---
+title: "Economic Cleaning"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(lubridate)
+library(httr)
+library(jsonlite)
+```
+
+## initial work
+This project is an excercise in data cleaning and data exploration. This project will investigate some economic data.
+
+This project was inspired by an economic freedom index dataset I found on Kaggle Datasets.
+https://www.kaggle.com/lewisduncan93/the-economic-freedom-index/version/1#
+
+I quite like freedom and it would be interesting, and nice, to identify the relationships between these economic freedom indicators and other important things like economic performance, human well being, corruption, politics, wars, natural disasters, etc.
+The first thing we should do is read the dataset and inspect it.
+
+```{r }
+df <- read_csv("economic_freedom_index2019_data.csv")
+df
+```
+This does seem interesting, we have quite a few columns, with one row for each country. Many of these columns have been read in incorrectly.
+However, this dataset only contained data for 2019. I looked at the source website and it appears that the data is only available year by year
+https://www.heritage.org/
+This is not a problem, I can simply download the files for each year and then merge them together.
+
+```{r, message=FALSE}
+
+name_list <- list.files("economic_freedom/")
+
+extract_economic_freedom_year <- function(file){
+  #take a file name in the economic_freedom folder
+  #read the csv into memory
+  #make sure all columns except for name are treated as numeric
+  read_csv(paste0("economic_freedom/",file),
+           na="N/A") %>% 
+  mutate_at(vars(-name),as.numeric)
+}
+
+data_list <- name_list %>% map(extract_economic_freedom_year)
+economic_freedom <- data_list %>% bind_rows()
+#spaces in column names causes trouble so we will replace these with underscores
+#we will be joining this data set with other datasets so it makes sense to 
+#add a label indicating the source dataset here.
+names(economic_freedom) <- str_c("efi_",names(economic_freedom) %>% str_replace(" ","_"))
+economic_freedom
+```
+
+We now have a reasonable dataset and can perform some initial plots. The most basic plot we can make is a line plot of our time series.
+
+```{r}
+economic_freedom %>% 
+  ggplot(aes(x=efi_index_year,y=efi_overall_score,color=efi_name)) + 
+  geom_line() +
+  theme(legend.position = "none") +
+  ggtitle("Overall Economic Freedom Scores of all countries since 1995")
+```
+
+This plot is quite crowded and we have had to leave off the key indicating which colors are which.
+There are a few interesting points we can gather from this:
+ * some countries start with high freedom and maintain steady high freedom
+ * some countries start with low freedom and maintain steady low freedom
+ * some countries do not have data spanning the full range.
+We can easily filter out a few of these countries and identify them. These outliers may be interesting.
+
+```{r}
+economic_freedom %>% 
+  filter(efi_overall_score > 85 | efi_overall_score < 20) %>% 
+  ggplot(aes(x=efi_index_year,y=efi_overall_score,color=efi_name)) + 
+  geom_line() +
+  ggtitle("Overall Economic Freedom Scores of outlier countries since 1995")
+```
+
+That simple filter was very helpful. We see that Singapore and Hong Kong have had long term high economic freedom, and that North Korea has had long term low economic freedom. It is commonly known that Singapore and Hong Kong are quite wealthy, while North Korea is not as wealthy but these are outliers and only a few data points. We also see that data about Iraq ceases to be available after 2002, this makes sense as the US and its allies invaded Iraq in 2003. The method used to isolate the Iraq data was quite simplistic so we should check that the data does indeed end for Iraq, the alternative is that there could be a gap and then significantly higher data later on.
+
+```{r}
+economic_freedom %>% 
+  filter(efi_name=="Iraq") %>% 
+  select(efi_overall_score) %>% 
+  summary()
+
+```
+
+
+
+There are some interesting questions we can ask:
+linear model to identify general trends
+calculate variance to see increases and decreases
+how does this measure correlate with important things like wealth and health
+
+

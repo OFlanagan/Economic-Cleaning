@@ -1,0 +1,16 @@
+"0","economic_freedom %>% 
+  ggplot(aes(x=efi_index_year,y=efi_overall_score,color=efi_name)) + 
+  geom_line() +
+  theme(legend.position = ""none"") +
+  ggtitle(""Overall Economic Freedom Scores of all countries since 1995"")
+"
+"2","Warning in gzfile(file, ""wb"") :"
+"2","
+ "
+"2"," cannot open compressed file '/Users/owenflanagan/Documents/Projects/DatacleaningEconomics/.Rproj.user/shared/notebooks/F8562E84-project/1/B533A319CD9D7E75/c6nka6y513rig_t/9765019a01ae459c8d200c0597991c71.snapshot', probable reason 'No such file or directory'
+"
+"2","Error in gzfile(file, ""wb"") : cannot open the connection
+"
+"2","Error in (function (which = dev.cur())  : 
+  QuartzBitmap_Output - unable to open file '/Users/owenflanagan/Documents/Projects/DatacleaningEconomics/.Rproj.user/shared/notebooks/F8562E84-project/1/B533A319CD9D7E75/c6nka6y513rig_t/_rs_chunk_plot_001.png'
+"

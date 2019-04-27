@@ -1,0 +1,119 @@
+]0;~/Documents/Projects/DatacleaningEconomics[?1034hOwens-MacBook-Pro:DatacleaningEconomics owenflanagan$ ;s
+bash: syntax error near unexpected token `;'
+]0;~/Documents/Projects/DatacleaningEconomicsOwens-MacBook-Pro:DatacleaningEconomics owenflanagan$ ls
+DatacleaningEconomics.Rproj
+]0;~/Documents/Projects/DatacleaningEconomicsOwens-MacBook-Pro:DatacleaningEconomics owenflanagan$ pwd
+/Users/owenflanagan/Documents/Projects/DatacleaningEconomics
+]0;~/Documents/Projects/DatacleaningEconomicsOwens-MacBook-Pro:DatacleaningEconomics owenflanagan$ ls
+DatacleaningEconomics.Rproj	the-economic-freedom-index.zip
+]0;~/Documents/Projects/DatacleaningEconomicsOwens-MacBook-Pro:DatacleaningEconomics owenflanagan$ uniz[K[Kzip the-economic-freedom-index.zip 
+Archive:  the-economic-freedom-index.zip
+  inflating: economic_freedom_index2019_data.csv  
+]0;~/Documents/Projects/DatacleaningEconomicsOwens-MacBook-Pro:DatacleaningEconomics owenflanagan$ ls
+DatacleaningEconomics.Rproj		economic_freedom_index2019_data.csv	the-economic-freedom-index.zip
+]0;~/Documents/Projects/DatacleaningEconomicsOwens-MacBook-Pro:DatacleaningEconomics owenflanagan$ rm the-economic-freedom-index.zip 
+]0;~/Documents/Projects/DatacleaningEconomicsOwens-MacBook-Pro:DatacleaningEconomics owenflanagan$ chmod rw,rw,rw the[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Kchmod {r[K[K+rwx economic_freedom_index2019_data.csv 
+]0;~/Documents/Projects/DatacleaningEconomicsOwens-MacBook-Pro:DatacleaningEconomics owenflanagan$ ls
+DatacleaningEconomics.Rproj		data.csv				economic_freedom_index2019_data.csv
+]0;~/Documents/Projects/DatacleaningEconomicsOwens-MacBook-Pro:DatacleaningEconomics owenflanagan$ head data.csv 
+name,index year,overall score,property rights,government integrity,judicial effectiveness,tax burden,government spending,fiscal health,business freedom,labor freedom,monetary freedom,trade freedom,investment freedom,financial freedom
+Afghanistan,2019,51.5,19.6,25.2,29.6,91.7,80.3,99.3,49.2,60.4,76.7,66.0,10.0,10.0
+Albania,2019,66.5,54.8,40.4,30.6,86.3,73.9,80.6,69.3,52.7,81.5,87.8,70.0,70.0
+Algeria,2019,46.2,31.6,28.9,36.2,76.4,48.7,18.7,61.6,49.9,74.9,67.4,30.0,30.0
+Angola,2019,50.6,35.9,20.5,26.6,83.9,80.7,58.2,55.7,58.8,55.4,61.2,30.0,40.0
+Argentina,2019,52.2,47.8,33.5,44.5,69.3,49.5,33.0,56.4,46.9,60.2,70.0,55.0,60.0
+Armenia,2019,67.7,57.2,38.6,46.3,84.7,79.0,53.0,78.3,71.4,77.8,80.8,75.0,70.0
+Australia,2019,80.9,79.1,79.9,86.5,62.8,60.1,86.2,88.3,84.1,86.6,87.6,80.0,90.0
+Austria,2019,72.0,84.2,77.4,71.3,50.5,24.5,85.5,74.9,68.7,81.5,86.0,90.0,70.0
+Azerbaijan,2019,65.4,59.1,44.7,53.1,87.5,59.5,89.4,69.5,63.9,63.0,74.6,60.0,60.0
+]0;~/Documents/Projects/DatacleaningEconomicsOwens-MacBook-Pro:DatacleaningEconomics owenflanagan$ head data.csv [K[K[K[K[K[K[K[K[K[K[K[K[K[Kmv data.csv 2018[K9.csv
+]0;~/Documents/Projects/DatacleaningEconomicsOwens-MacBook-Pro:DatacleaningEconomics owenflanagan$ ls
+2019.csv				DatacleaningEconomics.Rproj		economic_freedom_index2019_data.csv
+]0;~/Documents/Projects/DatacleaningEconomicsOwens-MacBook-Pro:DatacleaningEconomics owenflanagan$ ls
+2019.csv				economic_freedom
+DatacleaningEconomics.Rproj		economic_freedom_index2019_data.csv
+]0;~/Documents/Projects/DatacleaningEconomicsOwens-MacBook-Pro:DatacleaningEconomics owenflanagan$ mv 2018[K9.csv dat/[Ka/2019.csv
+mv: rename 2019.csv to data/2019.csv: No such file or directory
+]0;~/Documents/Projects/DatacleaningEconomicsOwens-MacBook-Pro:DatacleaningEconomics owenflanagan$ ls
+2019.csv				economic_freedom
+DatacleaningEconomics.Rproj		economic_freedom_index2019_data.csv
+]0;~/Documents/Projects/DatacleaningEconomicsOwens-MacBook-Pro:DatacleaningEconomics owenflanagan$ lsmv 2019.csv data/2019.csv[1P/2019.csv[1P/2019.csv[1P/2019.csv[1P/2019.csve/2019.csvc/2019.csvo/2019.csvn/2019.csvomic_freedom/2019.csv
+]0;~/Documents/Projects/DatacleaningEconomicsOwens-MacBook-Pro:DatacleaningEconomics owenflanagan$ ls
+DatacleaningEconomics.Rproj		economic_freedom			economic_freedom_index2019_data.csv
+]0;~/Documents/Projects/DatacleaningEconomicsOwens-MacBook-Pro:DatacleaningEconomics owenflanagan$ ls economic_freedom
+2018.csv	2019.csv
+]0;~/Documents/Projects/DatacleaningEconomicsOwens-MacBook-Pro:DatacleaningEconomics owenflanagan$ ls
+DatacleaningEconomics.Rproj		economic_freedom			economic_freedom_index2019_data.csv
+]0;~/Documents/Projects/DatacleaningEconomicsOwens-MacBook-Pro:DatacleaningEconomics owenflanagan$ ls economic_freedom
+2017.csv		2018.csv		2019.csv		index2019_data.xls
+]0;~/Documents/Projects/DatacleaningEconomicsOwens-MacBook-Pro:DatacleaningEconomics owenflanagan$ ls
+DatacleaningEconomics.Rproj		economic_freedom_index2019_data.csv
+economic_freedom			project.Rmd
+]0;~/Documents/Projects/DatacleaningEconomicsOwens-MacBook-Pro:DatacleaningEconomics owenflanagan$ ls
+DatacleaningEconomics.Rproj		economic_freedom_index2019_data.csv
+economic_freedom			project.Rmd
+]0;~/Documents/Projects/DatacleaningEconomicsOwens-MacBook-Pro:DatacleaningEconomics owenflanagan$ ls economic_freedom
+2015.csv		2016.csv		2017.csv		2018.csv		2019.csv		index2019_data.xls
+]0;~/Documents/Projects/DatacleaningEconomicsOwens-MacBook-Pro:DatacleaningEconomics owenflanagan$ ls economic_freedom
+2005.csv		2008.csv		2011.csv		2014.csv		2017.csv		index2019_data.xls
+2006.csv		2009.csv		2012.csv		2015.csv		2018.csv
+2007.csv		2010.csv		2013.csv		2016.csv		2019.csv
+]0;~/Documents/Projects/DatacleaningEconomicsOwens-MacBook-Pro:DatacleaningEconomics owenflanagan$ rm economic_freedomind[K[K[K/index2019_data.xls 
+]0;~/Documents/Projects/DatacleaningEconomicsOwens-MacBook-Pro:DatacleaningEconomics owenflanagan$ ls
+DatacleaningEconomics.Rproj		economic_freedom_index2019_data.csv
+economic_freedom			project.Rmd
+]0;~/Documents/Projects/DatacleaningEconomicsOwens-MacBook-Pro:DatacleaningEconomics owenflanagan$ ls economic_freedom
+1995.csv	1998.csv	2001.csv	2004.csv	2007.csv	2010.csv	2013.csv	2016.csv	2019.csv
+1996.csv	1999.csv	2002.csv	2005.csv	2008.csv	2011.csv	2014.csv	2017.csv
+1997.csv	2000.csv	2003.csv	2006.csv	2009.csv	2012.csv	2015.csv	2018.csv
+]0;~/Documents/Projects/DatacleaningEconomicsOwens-MacBook-Pro:DatacleaningEconomics owenflanagan$ [KOwens-MacBook-Pro:DatacleaningEconomics owenflanagan$ git init
+Initialized empty Git repository in /Users/owenflanagan/Documents/Projects/DatacleaningEconomics/.git/
+]0;~/Documents/Projects/DatacleaningEconomicsOwens-MacBook-Pro:DatacleaningEconomics owenflanagan$ git commit -am "initial commit"
+On branch master
+
+Initial commit
+
+Untracked files:
+	[31m.Rproj.user/[m
+	[31mDatacleaningEconomics.Rproj[m
+	[31meconomic_freedom/[m
+	[31meconomic_freedom_index2019_data.csv[m
+	[31mproject.Rmd[m
+	[31mproject.md[m
+	[31mproject_files/[m
+
+nothing added to commit but untracked files present
+]0;~/Documents/Projects/DatacleaningEconomicsOwens-MacBook-Pro:DatacleaningEconomics owenflanagan$ [KOwens-MacBook-Pro:DatacleaningEconomics owenflanagan$ [KOwens-MacBook-Pro:DatacleaningEconomics owenflanagan$ git stati[Kus
+On branch master
+
+No commits yet
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	[31m.Rproj.user/[m
+	[31mDatacleaningEconomics.Rproj[m
+	[31meconomic_freedom/[m
+	[31meconomic_freedom_index2019_data.csv[m
+	[31mproject.Rmd[m
+	[31mproject.md[m
+	[31mproject_files/[m
+
+nothing added to commit but untracked files present (use "git add" to track)
+]0;~/Documents/Projects/DatacleaningEconomicsOwens-MacBook-Pro:DatacleaningEconomics owenflanagan$ git statuscommit -am "initial commit"
+On branch master
+
+Initial commit
+
+Untracked files:
+	[31m.Rproj.user/[m
+	[31mDatacleaningEconomics.Rproj[m
+	[31meconomic_freedom/[m
+	[31meconomic_freedom_index2019_data.csv[m
+	[31mproject.Rmd[m
+	[31mproject.md[m
+	[31mproject_files/[m
+
+nothing added to commit but untracked files present
+]0;~/Documents/Projects/DatacleaningEconomicsOwens-MacBook-Pro:DatacleaningEconomics owenflanagan$ git add .
+]0;~/Documents/Projects/DatacleaningEconomicsOwens-MacBook-Pro:DatacleaningEconomics owenflanagan$ git add .commit -am "initial commit"

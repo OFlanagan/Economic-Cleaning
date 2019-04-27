@@ -1,0 +1,10 @@
+"0","df <- read_csv(""economic_freedom_index2019_data.csv"")"
+"2","Parsed with column specification:
+cols(
+  .default = col_character(),
+  CountryID = col_integer()
+)
+"
+"2","See spec(...) for full column specifications.
+"
+"0","df %>% head()"
