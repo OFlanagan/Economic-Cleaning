@@ -29,7 +29,7 @@ The first thing we should do is read the dataset and inspect it.
 
 ```{r }
 df <- read_csv("economic_freedom_index2019_data.csv")
-df
+kable(df %>% head())
 ```
 This does seem interesting, we have quite a few columns, with one row for each country. Many of these columns have been read in incorrectly.
 However, this dataset only contained data for 2019. I looked at the source website and it appears that the data is only available year by year
@@ -55,7 +55,7 @@ economic_freedom <- data_list %>% bind_rows()
 #we will be joining this data set with other datasets so it makes sense to 
 #add a label indicating the source dataset here.
 names(economic_freedom) <- str_c("efi_",names(economic_freedom) %>% str_replace(" ","_"))
-economic_freedom
+kable(economic_freedom %>% head())
 ```
 
 We now have a reasonable dataset and can perform some initial plots. The most basic plot we can make is a line plot of our time series.
@@ -120,7 +120,8 @@ kable(wb_cachelist$countries %>% head())
 This countries dataset includes a lot of detail which we can join onto our EFI dataset. 
 
 ```{r}
-kable(wb_cachelist$indicators %>% head())
+kable(wb_cachelist$indicators %>% head(1))
+  
 ```
 
 The indicators dataframe appears to be a list of all indicators available with descriptions. We will need to do a little more research before we can pick some interesting indicators as there are literally thousands of indicators including zinc prices.
@@ -131,12 +132,12 @@ kable(wb_cachelist$sources %>% head())
 
 
 ```{r}
-kable(wb_cachelist$datacatalog %>% head())
+kable(wb_cachelist$datacatalog %>% head(1))
 
 ```
 
 ```{r}
-kable(wb_cachelist$topics %>% head())
+kable(wb_cachelist$topics %>% head(3))
 ```
 
 ```{r}

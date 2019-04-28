@@ -22,42 +22,749 @@ df <- read_csv("economic_freedom_index2019_data.csv")
     ## Parsed with column specification:
     ## cols(
     ##   .default = col_character(),
-    ##   CountryID = col_integer()
+    ##   CountryID = col_double()
     ## )
 
     ## See spec(...) for full column specifications.
 
 ``` r
-df
+kable(df %>% head())
 ```
 
-    ## # A tibble: 186 x 34
-    ##    CountryID `Country Name` WEBNAME Region `World Rank` `Region Rank`
-    ##        <int> <chr>          <chr>   <chr>  <chr>        <chr>        
-    ##  1         1 Afghanistan    Afghan… Asia-… 152          39           
-    ##  2         2 Albania        Albania Europe 52           27           
-    ##  3         3 Algeria        Algeria Middl… 171          14           
-    ##  4         4 Angola         Angola  Sub-S… 156          33           
-    ##  5         5 Argentina      Argent… Ameri… 148          26           
-    ##  6         6 Armenia        Armenia Europe 47           24           
-    ##  7         7 Australia      Austra… Asia-… 5            4            
-    ##  8         8 Austria        Austria Europe 31           16           
-    ##  9         9 Azerbaijan     Azerba… Asia-… 60           13           
-    ## 10        10 Bahamas        Bahamas Ameri… 76           15           
-    ## # ... with 176 more rows, and 28 more variables: `2019 Score` <chr>,
-    ## #   `Property Rights` <chr>, `Judical Effectiveness` <chr>, `Government
-    ## #   Integrity` <chr>, `Tax Burden` <chr>, `Gov't Spending` <chr>, `Fiscal
-    ## #   Health` <chr>, `Business Freedom` <chr>, `Labor Freedom` <chr>,
-    ## #   `Monetary Freedom` <chr>, `Trade Freedom` <chr>, `Investment
-    ## #   Freedom` <chr>, `Financial Freedom` <chr>, `Tariff Rate (%)` <chr>,
-    ## #   `Income Tax Rate (%)` <chr>, `Corporate Tax Rate (%)` <chr>, `Tax
-    ## #   Burden % of GDP` <chr>, `Gov't Expenditure % of GDP` <chr>,
-    ## #   Country <chr>, `Population (Millions)` <chr>, `GDP (Billions,
-    ## #   PPP)` <chr>, `GDP Growth Rate (%)` <chr>, `5 Year GDP Growth Rate
-    ## #   (%)` <chr>, `GDP per Capita (PPP)` <chr>, `Unemployment (%)` <chr>,
-    ## #   `Inflation (%)` <chr>, `FDI Inflow (Millions)` <chr>, `Public Debt (%
-    ## #   of GDP)` <chr>
-
+<table>
+<thead>
+<tr>
+<th style="text-align:right;">
+CountryID
+</th>
+<th style="text-align:left;">
+Country Name
+</th>
+<th style="text-align:left;">
+WEBNAME
+</th>
+<th style="text-align:left;">
+Region
+</th>
+<th style="text-align:left;">
+World Rank
+</th>
+<th style="text-align:left;">
+Region Rank
+</th>
+<th style="text-align:left;">
+2019 Score
+</th>
+<th style="text-align:left;">
+Property Rights
+</th>
+<th style="text-align:left;">
+Judical Effectiveness
+</th>
+<th style="text-align:left;">
+Government Integrity
+</th>
+<th style="text-align:left;">
+Tax Burden
+</th>
+<th style="text-align:left;">
+Gov't Spending
+</th>
+<th style="text-align:left;">
+Fiscal Health
+</th>
+<th style="text-align:left;">
+Business Freedom
+</th>
+<th style="text-align:left;">
+Labor Freedom
+</th>
+<th style="text-align:left;">
+Monetary Freedom
+</th>
+<th style="text-align:left;">
+Trade Freedom
+</th>
+<th style="text-align:left;">
+Investment Freedom
+</th>
+<th style="text-align:left;">
+Financial Freedom
+</th>
+<th style="text-align:left;">
+Tariff Rate (%)
+</th>
+<th style="text-align:left;">
+Income Tax Rate (%)
+</th>
+<th style="text-align:left;">
+Corporate Tax Rate (%)
+</th>
+<th style="text-align:left;">
+Tax Burden % of GDP
+</th>
+<th style="text-align:left;">
+Gov't Expenditure % of GDP
+</th>
+<th style="text-align:left;">
+Country
+</th>
+<th style="text-align:left;">
+Population (Millions)
+</th>
+<th style="text-align:left;">
+GDP (Billions, PPP)
+</th>
+<th style="text-align:left;">
+GDP Growth Rate (%)
+</th>
+<th style="text-align:left;">
+5 Year GDP Growth Rate (%)
+</th>
+<th style="text-align:left;">
+GDP per Capita (PPP)
+</th>
+<th style="text-align:left;">
+Unemployment (%)
+</th>
+<th style="text-align:left;">
+Inflation (%)
+</th>
+<th style="text-align:left;">
+FDI Inflow (Millions)
+</th>
+<th style="text-align:left;">
+Public Debt (% of GDP)
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+Afghanistan
+</td>
+<td style="text-align:left;">
+Afghanistan
+</td>
+<td style="text-align:left;">
+Asia-Pacific
+</td>
+<td style="text-align:left;">
+152
+</td>
+<td style="text-align:left;">
+39
+</td>
+<td style="text-align:left;">
+51.5
+</td>
+<td style="text-align:left;">
+19.6
+</td>
+<td style="text-align:left;">
+29.6
+</td>
+<td style="text-align:left;">
+25.2
+</td>
+<td style="text-align:left;">
+91.7
+</td>
+<td style="text-align:left;">
+80.3
+</td>
+<td style="text-align:left;">
+99.3
+</td>
+<td style="text-align:left;">
+49.2
+</td>
+<td style="text-align:left;">
+60.4
+</td>
+<td style="text-align:left;">
+76.7
+</td>
+<td style="text-align:left;">
+66.0
+</td>
+<td style="text-align:left;">
+10
+</td>
+<td style="text-align:left;">
+10
+</td>
+<td style="text-align:left;">
+7.0
+</td>
+<td style="text-align:left;">
+20.0
+</td>
+<td style="text-align:left;">
+20.0
+</td>
+<td style="text-align:left;">
+5.0
+</td>
+<td style="text-align:left;">
+25.6
+</td>
+<td style="text-align:left;">
+Afghanistan
+</td>
+<td style="text-align:left;">
+35.5
+</td>
+<td style="text-align:left;">
+$69.6
+</td>
+<td style="text-align:left;">
+2.5
+</td>
+<td style="text-align:left;">
+2.9
+</td>
+<td style="text-align:left;">
+$1,958
+</td>
+<td style="text-align:left;">
+8.8
+</td>
+<td style="text-align:left;">
+5.0
+</td>
+<td style="text-align:left;">
+53.9
+</td>
+<td style="text-align:left;">
+7.3
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+Albania
+</td>
+<td style="text-align:left;">
+Albania
+</td>
+<td style="text-align:left;">
+Europe
+</td>
+<td style="text-align:left;">
+52
+</td>
+<td style="text-align:left;">
+27
+</td>
+<td style="text-align:left;">
+66.5
+</td>
+<td style="text-align:left;">
+54.8
+</td>
+<td style="text-align:left;">
+30.6
+</td>
+<td style="text-align:left;">
+40.4
+</td>
+<td style="text-align:left;">
+86.3
+</td>
+<td style="text-align:left;">
+73.9
+</td>
+<td style="text-align:left;">
+80.6
+</td>
+<td style="text-align:left;">
+69.3
+</td>
+<td style="text-align:left;">
+52.7
+</td>
+<td style="text-align:left;">
+81.5
+</td>
+<td style="text-align:left;">
+87.8
+</td>
+<td style="text-align:left;">
+70
+</td>
+<td style="text-align:left;">
+70
+</td>
+<td style="text-align:left;">
+1.1
+</td>
+<td style="text-align:left;">
+23.0
+</td>
+<td style="text-align:left;">
+15.0
+</td>
+<td style="text-align:left;">
+24.9
+</td>
+<td style="text-align:left;">
+29.5
+</td>
+<td style="text-align:left;">
+Albania
+</td>
+<td style="text-align:left;">
+2.9
+</td>
+<td style="text-align:left;">
+$36.0
+</td>
+<td style="text-align:left;">
+3.9
+</td>
+<td style="text-align:left;">
+2.5
+</td>
+<td style="text-align:left;">
+$12,507
+</td>
+<td style="text-align:left;">
+13.9
+</td>
+<td style="text-align:left;">
+2.0
+</td>
+<td style="text-align:left;">
+1,119.1
+</td>
+<td style="text-align:left;">
+71.2
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:left;">
+Algeria
+</td>
+<td style="text-align:left;">
+Algeria
+</td>
+<td style="text-align:left;">
+Middle East and North Africa
+</td>
+<td style="text-align:left;">
+171
+</td>
+<td style="text-align:left;">
+14
+</td>
+<td style="text-align:left;">
+46.2
+</td>
+<td style="text-align:left;">
+31.6
+</td>
+<td style="text-align:left;">
+36.2
+</td>
+<td style="text-align:left;">
+28.9
+</td>
+<td style="text-align:left;">
+76.4
+</td>
+<td style="text-align:left;">
+48.7
+</td>
+<td style="text-align:left;">
+18.7
+</td>
+<td style="text-align:left;">
+61.6
+</td>
+<td style="text-align:left;">
+49.9
+</td>
+<td style="text-align:left;">
+74.9
+</td>
+<td style="text-align:left;">
+67.4
+</td>
+<td style="text-align:left;">
+30
+</td>
+<td style="text-align:left;">
+30
+</td>
+<td style="text-align:left;">
+8.8
+</td>
+<td style="text-align:left;">
+35.0
+</td>
+<td style="text-align:left;">
+23.0
+</td>
+<td style="text-align:left;">
+24.5
+</td>
+<td style="text-align:left;">
+41.4
+</td>
+<td style="text-align:left;">
+Algeria
+</td>
+<td style="text-align:left;">
+41.5
+</td>
+<td style="text-align:left;">
+$632.9
+</td>
+<td style="text-align:left;">
+2.0
+</td>
+<td style="text-align:left;">
+3.1
+</td>
+<td style="text-align:left;">
+$15,237
+</td>
+<td style="text-align:left;">
+10.0
+</td>
+<td style="text-align:left;">
+5.6
+</td>
+<td style="text-align:left;">
+1,203.0
+</td>
+<td style="text-align:left;">
+25.8
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:left;">
+Angola
+</td>
+<td style="text-align:left;">
+Angola
+</td>
+<td style="text-align:left;">
+Sub-Saharan Africa
+</td>
+<td style="text-align:left;">
+156
+</td>
+<td style="text-align:left;">
+33
+</td>
+<td style="text-align:left;">
+50.6
+</td>
+<td style="text-align:left;">
+35.9
+</td>
+<td style="text-align:left;">
+26.6
+</td>
+<td style="text-align:left;">
+20.5
+</td>
+<td style="text-align:left;">
+83.9
+</td>
+<td style="text-align:left;">
+80.7
+</td>
+<td style="text-align:left;">
+58.2
+</td>
+<td style="text-align:left;">
+55.7
+</td>
+<td style="text-align:left;">
+58.8
+</td>
+<td style="text-align:left;">
+55.4
+</td>
+<td style="text-align:left;">
+61.2
+</td>
+<td style="text-align:left;">
+30
+</td>
+<td style="text-align:left;">
+40
+</td>
+<td style="text-align:left;">
+9.4
+</td>
+<td style="text-align:left;">
+17.0
+</td>
+<td style="text-align:left;">
+30.0
+</td>
+<td style="text-align:left;">
+20.6
+</td>
+<td style="text-align:left;">
+25.3
+</td>
+<td style="text-align:left;">
+Angola
+</td>
+<td style="text-align:left;">
+28.2
+</td>
+<td style="text-align:left;">
+$190.3
+</td>
+<td style="text-align:left;">
+0.7
+</td>
+<td style="text-align:left;">
+2.9
+</td>
+<td style="text-align:left;">
+$6,753
+</td>
+<td style="text-align:left;">
+8.2
+</td>
+<td style="text-align:left;">
+31.7
+</td>
+<td style="text-align:left;">
+-2,254.5
+</td>
+<td style="text-align:left;">
+65.3
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:left;">
+Argentina
+</td>
+<td style="text-align:left;">
+Argentina
+</td>
+<td style="text-align:left;">
+Americas
+</td>
+<td style="text-align:left;">
+148
+</td>
+<td style="text-align:left;">
+26
+</td>
+<td style="text-align:left;">
+52.2
+</td>
+<td style="text-align:left;">
+47.8
+</td>
+<td style="text-align:left;">
+44.5
+</td>
+<td style="text-align:left;">
+33.5
+</td>
+<td style="text-align:left;">
+69.3
+</td>
+<td style="text-align:left;">
+49.5
+</td>
+<td style="text-align:left;">
+33.0
+</td>
+<td style="text-align:left;">
+56.4
+</td>
+<td style="text-align:left;">
+46.9
+</td>
+<td style="text-align:left;">
+60.2
+</td>
+<td style="text-align:left;">
+70.0
+</td>
+<td style="text-align:left;">
+55
+</td>
+<td style="text-align:left;">
+60
+</td>
+<td style="text-align:left;">
+7.5
+</td>
+<td style="text-align:left;">
+35.0
+</td>
+<td style="text-align:left;">
+30.0
+</td>
+<td style="text-align:left;">
+30.8
+</td>
+<td style="text-align:left;">
+41.0
+</td>
+<td style="text-align:left;">
+Argentina
+</td>
+<td style="text-align:left;">
+44.1
+</td>
+<td style="text-align:left;">
+$920.2
+</td>
+<td style="text-align:left;">
+2.9
+</td>
+<td style="text-align:left;">
+0.7
+</td>
+<td style="text-align:left;">
+$20,876
+</td>
+<td style="text-align:left;">
+8.7
+</td>
+<td style="text-align:left;">
+25.7
+</td>
+<td style="text-align:left;">
+11,857.0
+</td>
+<td style="text-align:left;">
+52.6
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:left;">
+Armenia
+</td>
+<td style="text-align:left;">
+Armenia
+</td>
+<td style="text-align:left;">
+Europe
+</td>
+<td style="text-align:left;">
+47
+</td>
+<td style="text-align:left;">
+24
+</td>
+<td style="text-align:left;">
+67.7
+</td>
+<td style="text-align:left;">
+57.2
+</td>
+<td style="text-align:left;">
+46.3
+</td>
+<td style="text-align:left;">
+38.6
+</td>
+<td style="text-align:left;">
+84.7
+</td>
+<td style="text-align:left;">
+79.0
+</td>
+<td style="text-align:left;">
+53.0
+</td>
+<td style="text-align:left;">
+78.3
+</td>
+<td style="text-align:left;">
+71.4
+</td>
+<td style="text-align:left;">
+77.8
+</td>
+<td style="text-align:left;">
+80.8
+</td>
+<td style="text-align:left;">
+75
+</td>
+<td style="text-align:left;">
+70
+</td>
+<td style="text-align:left;">
+2.1
+</td>
+<td style="text-align:left;">
+26.0
+</td>
+<td style="text-align:left;">
+20.0
+</td>
+<td style="text-align:left;">
+21.3
+</td>
+<td style="text-align:left;">
+26.4
+</td>
+<td style="text-align:left;">
+Armenia
+</td>
+<td style="text-align:left;">
+3.0
+</td>
+<td style="text-align:left;">
+$28.3
+</td>
+<td style="text-align:left;">
+7.5
+</td>
+<td style="text-align:left;">
+3.6
+</td>
+<td style="text-align:left;">
+$9,456
+</td>
+<td style="text-align:left;">
+18.2
+</td>
+<td style="text-align:left;">
+0.9
+</td>
+<td style="text-align:left;">
+245.7
+</td>
+<td style="text-align:left;">
+53.5
+</td>
+</tr>
+</tbody>
+</table>
 This does seem interesting, we have quite a few columns, with one row for each country. Many of these columns have been read in incorrectly. However, this dataset only contained data for 2019. I looked at the source website and it appears that the data is only available year by year <https://www.heritage.org/> This is not a problem, I can simply download the files for each year and then merge them together.
 
 ``` r
@@ -73,40 +780,349 @@ extract_economic_freedom_year <- function(file){
 }
 
 data_list <- name_list %>% map(extract_economic_freedom_year)
-```
-
-    ## Warning: package 'bindrcpp' was built under R version 3.4.4
-
-``` r
 economic_freedom <- data_list %>% bind_rows()
 #spaces in column names causes trouble so we will replace these with underscores
 #we will be joining this data set with other datasets so it makes sense to 
 #add a label indicating the source dataset here.
 names(economic_freedom) <- str_c("efi_",names(economic_freedom) %>% str_replace(" ","_"))
-economic_freedom
+kable(economic_freedom %>% head())
 ```
 
-    ## # A tibble: 4,598 x 15
-    ##    efi_name efi_index_year efi_overall_sco… efi_property_ri…
-    ##    <chr>             <dbl>            <dbl>            <dbl>
-    ##  1 Afghani…           1995             NA                 NA
-    ##  2 Albania            1995             49.7               50
-    ##  3 Algeria            1995             55.7               50
-    ##  4 Angola             1995             27.4               30
-    ##  5 Argenti…           1995             68                 70
-    ##  6 Armenia            1995             NA                 NA
-    ##  7 Austral…           1995             74.1               90
-    ##  8 Austria            1995             70                 90
-    ##  9 Azerbai…           1995             NA                 NA
-    ## 10 Bahrain            1995             76.2               60
-    ## # ... with 4,588 more rows, and 11 more variables:
-    ## #   efi_government_integrity <dbl>, efi_judicial_effectiveness <dbl>,
-    ## #   efi_tax_burden <dbl>, efi_government_spending <dbl>,
-    ## #   efi_fiscal_health <dbl>, efi_business_freedom <dbl>,
-    ## #   efi_labor_freedom <dbl>, efi_monetary_freedom <dbl>,
-    ## #   efi_trade_freedom <dbl>, efi_investment_freedom <dbl>,
-    ## #   efi_financial_freedom <dbl>
-
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+efi\_name
+</th>
+<th style="text-align:right;">
+efi\_index\_year
+</th>
+<th style="text-align:right;">
+efi\_overall\_score
+</th>
+<th style="text-align:right;">
+efi\_property\_rights
+</th>
+<th style="text-align:right;">
+efi\_government\_integrity
+</th>
+<th style="text-align:right;">
+efi\_judicial\_effectiveness
+</th>
+<th style="text-align:right;">
+efi\_tax\_burden
+</th>
+<th style="text-align:right;">
+efi\_government\_spending
+</th>
+<th style="text-align:right;">
+efi\_fiscal\_health
+</th>
+<th style="text-align:right;">
+efi\_business\_freedom
+</th>
+<th style="text-align:right;">
+efi\_labor\_freedom
+</th>
+<th style="text-align:right;">
+efi\_monetary\_freedom
+</th>
+<th style="text-align:right;">
+efi\_trade\_freedom
+</th>
+<th style="text-align:right;">
+efi\_investment\_freedom
+</th>
+<th style="text-align:right;">
+efi\_financial\_freedom
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Afghanistan
+</td>
+<td style="text-align:right;">
+1995
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Albania
+</td>
+<td style="text-align:right;">
+1995
+</td>
+<td style="text-align:right;">
+49.7
+</td>
+<td style="text-align:right;">
+50
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+81.7
+</td>
+<td style="text-align:right;">
+34.3
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+70
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+22.1
+</td>
+<td style="text-align:right;">
+59.0
+</td>
+<td style="text-align:right;">
+70
+</td>
+<td style="text-align:right;">
+50
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Algeria
+</td>
+<td style="text-align:right;">
+1995
+</td>
+<td style="text-align:right;">
+55.7
+</td>
+<td style="text-align:right;">
+50
+</td>
+<td style="text-align:right;">
+50
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+48.8
+</td>
+<td style="text-align:right;">
+69.5
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+70
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+59.2
+</td>
+<td style="text-align:right;">
+54.2
+</td>
+<td style="text-align:right;">
+50
+</td>
+<td style="text-align:right;">
+50
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Angola
+</td>
+<td style="text-align:right;">
+1995
+</td>
+<td style="text-align:right;">
+27.4
+</td>
+<td style="text-align:right;">
+30
+</td>
+<td style="text-align:right;">
+30
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+61.6
+</td>
+<td style="text-align:right;">
+0.0
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+40
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+0.0
+</td>
+<td style="text-align:right;">
+25.0
+</td>
+<td style="text-align:right;">
+30
+</td>
+<td style="text-align:right;">
+30
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Argentina
+</td>
+<td style="text-align:right;">
+1995
+</td>
+<td style="text-align:right;">
+68.0
+</td>
+<td style="text-align:right;">
+70
+</td>
+<td style="text-align:right;">
+50
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+80.7
+</td>
+<td style="text-align:right;">
+86.6
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+85
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+61.1
+</td>
+<td style="text-align:right;">
+58.4
+</td>
+<td style="text-align:right;">
+70
+</td>
+<td style="text-align:right;">
+50
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Armenia
+</td>
+<td style="text-align:right;">
+1995
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+</tbody>
+</table>
 We now have a reasonable dataset and can perform some initial plots. The most basic plot we can make is a line plot of our time series.
 
 ``` r
@@ -117,7 +1133,7 @@ economic_freedom %>%
   ggtitle("Overall Economic Freedom Scores of all countries since 1995")
 ```
 
-    ## Warning: Removed 421 rows containing missing values (geom_path).
+    ## Warning: Removed 455 rows containing missing values (geom_path).
 
 ![](project_files/figure-markdown_github/unnamed-chunk-3-1.png)
 
@@ -580,7 +1596,7 @@ Not classified
 This countries dataset includes a lot of detail which we can join onto our EFI dataset.
 
 ``` r
-kable(wb_cachelist$indicators %>% head())
+kable(wb_cachelist$indicators %>% head(1))
 ```
 
 <table>
@@ -631,121 +1647,6 @@ Platts Metals Week, Engineering and Mining Journal; Thomson Reuters Datastream; 
 </td>
 <td style="text-align:left;">
 Global Economic Monitor Commodities
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-XGDP.56.FSGOV.FDINSTADM.FFD
-</td>
-<td style="text-align:left;">
-Government expenditure in tertiary institutions as % of GDP (%)
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-Total general (local, regional and central) government expenditure in educational institutions (current and capital) at a given level of education, expressed as a percentage of GDP. It excludes transfers to private entities such as subsidies to households and students, but includes expenditure funded by transfers from international sources to government. Divide total expenditure in public institutions of a given level of education (ex. primary, secondary, or all levels combined) by the GDP, and multiply by 100. For more information, consult the UNESCO Institute of Statistics website: <http://www.uis.unesco.org/Education/>
-</td>
-<td style="text-align:left;">
-UNESCO Institute for Statistics
-</td>
-<td style="text-align:left;">
-12
-</td>
-<td style="text-align:left;">
-Education Statistics
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-XGDP.23.FSGOV.FDINSTADM.FFD
-</td>
-<td style="text-align:left;">
-Government expenditure in secondary institutions education as % of GDP (%)
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-Total general (local, regional and central) government expenditure in educational institutions (current and capital) at a given level of education, expressed as a percentage of GDP. It excludes transfers to private entities such as subsidies to households and students, but includes expenditure funded by transfers from international sources to government. Divide total expenditure in public institutions of a given level of education (ex. primary, secondary, or all levels combined) by the GDP, and multiply by 100. For more information, consult the UNESCO Institute of Statistics website: <http://www.uis.unesco.org/Education/>
-</td>
-<td style="text-align:left;">
-UNESCO Institute for Statistics
-</td>
-<td style="text-align:left;">
-12
-</td>
-<td style="text-align:left;">
-Education Statistics
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-WP15187.1
-</td>
-<td style="text-align:left;">
-Received payments for agricultural products: through a mobile phone (% recipients, age 15+) \[w2\]
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-Denotes, among respondents reporting personally receiving money from any source for the sale of agricultural products, crops, produce, or livestock (self- or family-owned) in the past 12 months, the percentage who received this money through a mobile phone (% recipients, age 15+). \[w2: data are available for wave 2\].
-</td>
-<td style="text-align:left;">
-Demirguc-Kunt et al., 2015
-</td>
-<td style="text-align:left;">
-28
-</td>
-<td style="text-align:left;">
-Global Financial Inclusion
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-WP15186.1
-</td>
-<td style="text-align:left;">
-Received payments for agricultural products: into an account at a financial institution (% recipients, age 15+) \[w2\]
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-Denotes, among respondents reporting personally receiving money from any source for the sale of agricultural products, crops, produce, or livestock (self- or family-owned) in the past 12 months, the percentage who received this money directly into an account at a bank or another type of financial institution (% recipients, age 15+). \[w2: data are available for wave 2\].
-</td>
-<td style="text-align:left;">
-Demirguc-Kunt et al., 2015
-</td>
-<td style="text-align:left;">
-28
-</td>
-<td style="text-align:left;">
-Global Financial Inclusion
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-WP15185.1
-</td>
-<td style="text-align:left;">
-Received payments for agricultural products: in cash (% recipients, age 15+) \[w2\]
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-Denotes, among respondents reporting personally receiving money from any source for the sale of agricultural products, crops, produce, or livestock (self- or family-owned) in the past 12 months, the percentage who received this money directly in cash (% recipients, age 15+). \[w2: data are available for wave 2\].
-</td>
-<td style="text-align:left;">
-Demirguc-Kunt et al., 2015
-</td>
-<td style="text-align:left;">
-28
-</td>
-<td style="text-align:left;">
-Global Financial Inclusion
 </td>
 </tr>
 </tbody>
@@ -945,7 +1846,7 @@ N
 </tbody>
 </table>
 ``` r
-kable(wb_cachelist$datacatalog %>% head())
+kable(wb_cachelist$datacatalog %>% head(1))
 ```
 
 <table>
@@ -1130,455 +2031,10 @@ NA
 NA
 </td>
 </tr>
-<tr>
-<td style="text-align:left;">
-Africa Development Indicators
-</td>
-<td style="text-align:left;">
-ADI
-</td>
-<td style="text-align:left;">
-Africa Development Indicators was a primary World Bank collection of development indicators on Africa, compiled from officially-recognized international sources. No further updates of this database are currently planned. See World Development Indicators for more recent data on Africa.
-</td>
-<td style="text-align:left;">
-<http://databank.worldbank.org/data/views/variableselection/selectvariables.aspx?source=africa-development-indicators>
-</td>
-<td style="text-align:left;">
-Time series
-</td>
-<td style="text-align:left;">
-English
-</td>
-<td style="text-align:left;">
-Annual
-</td>
-<td style="text-align:left;">
-MNA, IBRD, SSA, IDA, LMY, HIC
-</td>
-<td style="text-align:left;">
-National, Regional
-</td>
-<td style="text-align:left;">
-53
-</td>
-<td style="text-align:left;">
-Trade, Urban Development
-</td>
-<td style="text-align:left;">
-No further updates planned
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-22-Feb-2013
-</td>
-<td style="text-align:left;">
-<data@worldbank.org>
-</td>
-<td style="text-align:left;">
-API, Bulk download, Query tool
-</td>
-<td style="text-align:left;">
-ADI (Excel) - ZIP (23.3 MB)=<http://databank.worldbank.org/data/download/ADI_excel.zip=excel;ADI> (CSV) - ZIP (12.6 MB)=<http://databank.worldbank.org/data/download/ADI_csv.zip=csv>
-</td>
-<td style="text-align:left;">
-Africa Development Indicators, The World Bank
-</td>
-<td style="text-align:left;">
-<http://data.worldbank.org/data-catalog/africa-development-indicators>
-</td>
-<td style="text-align:left;">
-314
-</td>
-<td style="text-align:left;">
-1960 - 2012
-</td>
-<td style="text-align:left;">
-1
-</td>
-<td style="text-align:left;">
-<http://data.worldbank.org/developers>
-</td>
-<td style="text-align:left;">
-11
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Global Economic Monitor
-</td>
-<td style="text-align:left;">
-GEM
-</td>
-<td style="text-align:left;">
-Providing daily updates of global economic developments, with coverage of high income- as well as developing countries. Daily data updates are provided for exchange rates, equity markets, and emerging market bond indices. Monthly data coverage (updated daily and populated upon availability) is provided for consumer prices, high-tech market indicators, industrial production and merchandise trade.
-</td>
-<td style="text-align:left;">
-<http://databank.worldbank.org/data/views/variableselection/selectvariables.aspx?source=global-economic-monitor-(gem)>
-</td>
-<td style="text-align:left;">
-Time series
-</td>
-<td style="text-align:left;">
-English
-</td>
-<td style="text-align:left;">
-Month
-</td>
-<td style="text-align:left;">
-WLD, EAP, ECA, LAC, MNA, SAS, SSA, HIC, LMY, IBRD, IDA
-</td>
-<td style="text-align:left;">
-National, Regional
-</td>
-<td style="text-align:left;">
-196
-</td>
-<td style="text-align:left;">
-Economy & Growth, Trade
-</td>
-<td style="text-align:left;">
-Daily
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-Current
-</td>
-<td style="text-align:left;">
-<dpgroup@worldbank.org>
-</td>
-<td style="text-align:left;">
-API, Bulk download, Query tool
-</td>
-<td style="text-align:left;">
-GEM (Excel) - ZIP(9.97 MB)=<http://databank.worldbank.org/data/download/GemDataEXTR.zip=excel>
-</td>
-<td style="text-align:left;">
-Global Economic Monitor, The World Bank
-</td>
-<td style="text-align:left;">
-<http://data.worldbank.org/data-catalog/global-economic-monitor>
-</td>
-<td style="text-align:left;">
-370
-</td>
-<td style="text-align:left;">
-1990 - Current
-</td>
-<td style="text-align:left;">
-1
-</td>
-<td style="text-align:left;">
-<http://data.worldbank.org/developers>
-</td>
-<td style="text-align:left;">
-15
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Research Datasets and Analytical Tools
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-Various specialized datasets compiled for World Bank research activities, sorted by topic. Many datasets are in raw unprocessed formats, and are specific in scope and coverage
-</td>
-<td style="text-align:left;">
-<http://econ.worldbank.org/WBSITE/EXTERNAL/EXTDEC/EXTRESEARCH/0,,contentMDK:20388241~menuPK:665266~pagePK:64165401~piPK:64165026~theSitePK:469382,00.html>
-</td>
-<td style="text-align:left;">
-Cross sectional;Time series
-</td>
-<td style="text-align:left;">
-English
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-WLD, EAP, ECA, LAC, MNA, SAS, SSA, HIC, LMY, IBRD, IDA
-</td>
-<td style="text-align:left;">
-National, City or metropolitan, Household, Other
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-Agriculture & Rural Development, Climate Change, Economy & Growth, Education, Energy & Mining, Environment, Health, Labor & Social Protection, Poverty, Public Sector, Trade
-</td>
-<td style="text-align:left;">
-No fixed schedule
-</td>
-<td style="text-align:left;">
-Varies by dataset
-</td>
-<td style="text-align:left;">
-20-Nov-2013
-</td>
-<td style="text-align:left;">
-<data@worldbank.org>
-</td>
-<td style="text-align:left;">
-Query tool
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-Development Research Group, The World Bank
-</td>
-<td style="text-align:left;">
-<http://data.worldbank.org/data-catalog/research-datasets-analytical-tools>
-</td>
-<td style="text-align:left;">
-283
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-0
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Millennium Development Goals
-</td>
-<td style="text-align:left;">
-MDGs
-</td>
-<td style="text-align:left;">
-Relevant indicators drawn from the World Development Indicators, reorganized according to the goals and targets of the Millennium Development Goals (MDGs).
-</td>
-<td style="text-align:left;">
-<http://databank.worldbank.org/data/views/variableselection/selectvariables.aspx?source=millennium-development-goals>
-</td>
-<td style="text-align:left;">
-Time series
-</td>
-<td style="text-align:left;">
-English
-</td>
-<td style="text-align:left;">
-Annual
-</td>
-<td style="text-align:left;">
-WLD, EAP, ECA, LAC, MNA, SAS, SSA, HIC, LMY, IBRD, IDA
-</td>
-<td style="text-align:left;">
-National, Regional
-</td>
-<td style="text-align:left;">
-217
-</td>
-<td style="text-align:left;">
-Agriculture & Rural Development, Aid Effectiveness, Climate Change, Economy & Growth, Education, Energy & Mining, Environment, External Debt, Financial Sector, Gender, Health, Infrastructure, Labor & Social Protection, Poverty, Private Sector, Public Sector, Science & Technology, Social Development, Trade, Urban Development
-</td>
-<td style="text-align:left;">
-Quarterly
-</td>
-<td style="text-align:left;">
-April, July, September, December
-</td>
-<td style="text-align:left;">
-19-Oct-2017
-</td>
-<td style="text-align:left;">
-<data@worldbank.org>
-</td>
-<td style="text-align:left;">
-API, Bulk download, Query tool
-</td>
-<td style="text-align:left;">
-MDG (CSV) - ZIP(1.67 MB)=<http://databank.worldbank.org/data/download/MDG_csv.zip=csv;MDG> (Excel) - ZIP(3.71 MB)=<http://databank.worldbank.org/data/download/MDG_Excel.zip=excel>
-</td>
-<td style="text-align:left;">
-Millennium Development Goals, The World Bank
-</td>
-<td style="text-align:left;">
-<http://data.worldbank.org/data-catalog/millennium-development-indicators>
-</td>
-<td style="text-align:left;">
-132
-</td>
-<td style="text-align:left;">
-1990 - 2016
-</td>
-<td style="text-align:left;">
-1
-</td>
-<td style="text-align:left;">
-<http://data.worldbank.org/developers>
-</td>
-<td style="text-align:left;">
-19
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-GovData360
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-GovData360 is a compendium of the most important governance indicators, from 26 datasets with worldwide coverage and more than 10 years of info, designed to provide guidance on the design of reforms and the monitoring of impacts. We have an Unbalanced Panel Data by Dataset - Country for around 3260 governance focused indicators.
-</td>
-<td style="text-align:left;">
-<http://govdata360.worldbank.org/topics>
-</td>
-<td style="text-align:left;">
-Time series
-</td>
-<td style="text-align:left;">
-English
-</td>
-<td style="text-align:left;">
-Annual
-</td>
-<td style="text-align:left;">
-WLD, EAP, ECA, LAC, MNA, SAS, SSA, HIC, LMY, IBRD, IDA
-</td>
-<td style="text-align:left;">
-National
-</td>
-<td style="text-align:left;">
-220
-</td>
-<td style="text-align:left;">
-Public Sector
-</td>
-<td style="text-align:left;">
-Biannually
-</td>
-<td style="text-align:left;">
-Varies by data source
-</td>
-<td style="text-align:left;">
-28-Apr-2017
-</td>
-<td style="text-align:left;">
-<govdata360@worldbank.org>
-</td>
-<td style="text-align:left;">
-Bulk download, Query tool
-</td>
-<td style="text-align:left;">
-CSV (13Mb)=<http://databank.worldbank.org/data/download/govdata360/AGIdata.zip=csv>
-</td>
-<td style="text-align:left;">
-GovData360 Portal, The World Bank Group. Also cite the individual data source.
-</td>
-<td style="text-align:left;">
-<http://data.worldbank.org/data-catalog/actionable-governance-indicators>
-</td>
-<td style="text-align:left;">
-9
-</td>
-<td style="text-align:left;">
-1987-2016
-</td>
-<td style="text-align:left;">
-0
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-</tr>
 </tbody>
 </table>
 ``` r
-kable(wb_cachelist$topics %>% head())
+kable(wb_cachelist$topics %>% head(3))
 ```
 
 <table>
@@ -1627,39 +2083,6 @@ Economy & Growth
 </td>
 <td style="text-align:left;">
 Economic growth is central to economic development. When national income grows, real people benefit. While there is no known formula for stimulating economic growth, data can help policy-makers better understand their countries' economic situations and guide any work toward improvement. Data here covers measures of economic growth, such as gross domestic product (GDP) and gross national income (GNI). It also includes indicators representing factors known to be relevant to economic growth, such as capital stock, employment, investment, savings, consumption, government spending, imports, and exports.
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-4
-</td>
-<td style="text-align:left;">
-Education
-</td>
-<td style="text-align:left;">
-Education is one of the most powerful instruments for reducing poverty and inequality and lays a foundation for sustained economic growth. The World Bank compiles data on education inputs, participation, efficiency, and outcomes. Data on education are compiled by the United Nations Educational, Scientific, and Cultural Organization (UNESCO) Institute for Statistics from official responses to surveys and from reports provided by education authorities in each country.
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-5
-</td>
-<td style="text-align:left;">
-Energy & Mining
-</td>
-<td style="text-align:left;">
-The world economy needs ever-increasing amounts of energy to sustain economic growth, raise living standards, and reduce poverty. But today's trends in energy use are not sustainable. As the world's population grows and economies become more industrialized, nonrenewable energy sources will become scarcer and more costly. Data here on energy production, use, dependency, and efficiency are compiled by the World Bank from the International Energy Agency and the Carbon Dioxide Information Analysis Center.
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-6
-</td>
-<td style="text-align:left;">
-Environment
-</td>
-<td style="text-align:left;">
-Natural and man-made environmental resources – fresh water, clean air, forests, grasslands, marine resources, and agro-ecosystems – provide sustenance and a foundation for social and economic development. The need to safeguard these resources crosses all borders. Today, the World Bank is one of the key promoters and financiers of environmental upgrading in the developing world. Data here cover forests, biodiversity, emissions, and pollution. Other indicators relevant to the environment are found under data pages for Agriculture & Rural Development, Energy & Mining, Infrastructure, and Urban Development.
 </td>
 </tr>
 </tbody>
