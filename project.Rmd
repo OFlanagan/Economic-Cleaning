@@ -24,6 +24,16 @@ https://www.kaggle.com/lewisduncan93/the-economic-freedom-index/version/1#
 
 I quite like freedom and it would be interesting, and nice, to identify the relationships between these economic freedom indicators and other important things like economic performance, human well being, corruption, politics, wars, natural disasters, environmental impact etc.
 
+The idea of freedom can be a little contentious. Many of my readers will be living in countries under some form of liberalism, an ideology which focusses on the rights of the individual rather than the goals of the collective. 
+
+However, most people are not in favour of complete freedom - very few people think that we should live in some sort of anarchic mad max situation where the strong take what they can and property belongs to those who are strong enough to take and hold it.
+
+There are also restrictions on freedoms around what consenting individuals can do with each other. e.g. same sex relations.
+
+Beyond these rights to be free from harm from others, nearly all countries have laws controlling what an individual can do to themselves - laws against killing oneself, laws against changing ones state of conciousness with drug use. 
+
+The type of freedom I will be investigating in this study is economic freedom, the freedom of individuals to pursue commercial activities. 
+
 NB - for this study we are going to assume that these metrics are in some way true measures of economic freedom.
 The first thing we should do is read the dataset and inspect it.
 
