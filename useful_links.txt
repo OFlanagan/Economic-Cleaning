@@ -1,0 +1,74 @@
+I have selected some interesting indicators that I will explore.  I have listed my reasons for including them in relation to economic freedom.  
+Agriculture
+
+
+https://data.worldbank.org/indicator/AG.LND.IRIG.AG.ZS?view=chart
+Agricultural irrigated land % of total agricultural land
+more economic freedom might result in more wealth and so more irrigated
+What does this mean in relation to fertilizer use, irrigation is known to cause issues with soil quality - or at least it is associated with it in the ancient world - in messopotamia with increased salinity leading to barley instead of wheat
+
+https://data.worldbank.org/indicator/AG.LND.TRAC.ZS?view=chart
+Agricultural machienry, tractors per 100 sq. km of arable land
+more economic freedom, more machines
+"Quote some of the invisible hand here"
+
+https://data.worldbank.org/indicator/AG.LND.ARBL.ZS?view=chart
+Arable land % of land area
+
+https://data.worldbank.org/indicator/AG.YLD.CREL.KG?view=chart
+Cereal yield (kg per hectare)
+interesting to look at wrt tractora and irrigation and fertilizer
+might be interesting to build some models predicting cereal yield as target - glm and rf with feature importance
+
+https://data.worldbank.org/indicator/SL.AGR.EMPL.FE.ZS?view=chart
+Employmnet in agriculture, female (% of female employment)
+
+https://data.worldbank.org/indicator/AG.CON.FERT.ZS?view=chart
+Fertilizer consumption (kilograms per hectare of arable land)
+
+https://data.worldbank.org/indicator/AG.LND.FRST.ZS?view=chart
+Forest area (% of land area)
+more economic freedom might mean deforestation for agriculture, but forest can also be plantation for timper
+interesting to look at in relation to % of land as arable
+Q: is there a wilderness indicator of some form in the environment section
+
+https://data.worldbank.org/indicator/SP.RUR.TOTL?view=chart
+Rural population (% of total population)
+
+https://data.worldbank.org/indicator/AG.LND.AGRI.ZS?view=chart
+Agricultural land (% of land area)
+
+https://data.worldbank.org/indicator/SI.POV.RUGP?view=chart
+Rural poverty gap at national poverty lines (%)
+
+https://data.worldbank.org/indicator/SL.AGR.EMPL.FE.ZS?view=chart
+Employment in agriculture, female (% of female employment)
+interesting to contrast with the male numbers and wealth
+more economic freedom might allow more women to work in agriculture, but maybe male dominated agriculture is a western thing and poorer countries with subsistence agriculture have everyone working.
+
+https://data.worldbank.org/indicator/SL.AGR.EMPL.MA.ZS?view=chart
+Employment in agriculture, male (% of male employment) (modeled ILO estimate)
+
+https://data.worldbank.org/indicator/SP.RUR.TOTL.ZS?view=chart
+Rural population (% of total population)
+ 
+
+ economic
+
+ https://data.worldbank.org/indicator/BX.KLT.DINV.CD.WD?view=chart
+
+ https://data.worldbank.org/indicator/NY.GDP.MKTP.KD.ZG?view=chart
+
+ https://data.worldbank.org/indicator/NY.GDP.PCAP.KD.ZG?view=chart
+
+ https://data.worldbank.org/indicator/NY.GNP.PCAP.CD?view=chart
+
+ https://data.worldbank.org/indicator/NY.GNP.ATLS.CD?view=chart
+
+ https://data.worldbank.org/indicator/NY.GNS.ICTR.ZS?view=chart
+
+ https://data.worldbank.org/indicator/FP.CPI.TOTL.ZG?view=chart
+
+ https://data.worldbank.org/indicator/GC.DOD.TOTL.GD.ZS?view=chart
+
+  
