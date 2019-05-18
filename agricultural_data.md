@@ -8,6 +8,7 @@ owen flanagan
     -   [Loading](#loading)
     -   [Reshaping](#reshaping)
     -   [Removing non countries](#removing-non-countries)
+    -   [Returning to the histograms](#returning-to-the-histograms)
 
 Introduction
 ============
@@ -2341,7 +2342,8 @@ irrigation_red %>%
   group_by(country) %>% 
   #count the number of rows - this is the number of years of data
   summarise(n=n()) %>% 
-  ggplot(aes(n)) + geom_histogram()
+  ggplot(aes(n)) + geom_histogram() + 
+  ggtitle("Number of years data per country in irrigation dataset")
 ```
 
     ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
@@ -2354,7 +2356,8 @@ tractors_red %>%
   group_by(country) %>% 
   #count the number of rows - this is the number of years of data
   summarise(n=n()) %>% 
-  ggplot(aes(n)) + geom_histogram()
+  ggplot(aes(n)) + geom_histogram() +
+  ggtitle("Number of years data per country in tractors dataset")
 ```
 
     ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
@@ -2367,7 +2370,8 @@ fertilizer_red %>%
   group_by(country) %>% 
   #count the number of rows - this is the number of years of data
   summarise(n=n()) %>% 
-  ggplot(aes(n)) + geom_histogram()
+  ggplot(aes(n)) + geom_histogram() + 
+  ggtitle("Number of years data per country in fertilizer dataset")
 ```
 
     ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
@@ -2380,7 +2384,8 @@ cereal_yield_red %>%
   group_by(country) %>% 
   #count the number of rows - this is the number of years of data
   summarise(n=n()) %>% 
-  ggplot(aes(n)) + geom_histogram()
+  ggplot(aes(n)) + geom_histogram() +
+  ggtitle("Number of years data per country in cereal yield dataset")
 ```
 
     ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
@@ -2418,6 +2423,7 @@ cereal_yield_red %>% filter(country=="Afghanistan") %>%
   ggplot(aes(x=date,y=CerealYieldKgPerHectare)) + 
   geom_point() + 
   geom_line() +
+  ggtitle("Cereal Yield in Afghanistan overlaid with key events")+
   #Monarchy deposed
   geom_vline(xintercept =  1973,color="sky blue") +
   #start of Soviet Afghan War
@@ -2434,7 +2440,11 @@ cereal_yield_red %>% filter(country=="Afghanistan") %>%
 
 ![](agricultural_data_files/figure-markdown_github/unnamed-chunk-22-1.png)
 
-This gives us what is quite an interesting graph for a region that has suffered decades of turmoil. A quick bit of research on wikipedia allowed me to add lines roughly seperating the different periods of recent Afghan history.
+This gives us what is quite an interesting graph for a region that has suffered decades of turmoil. This provides us with a story that can provide some motivation for this work. What is driving these changes in cereal yields?
+
+\*\*\* NOTE - SHOULD PUT THIS GRAPH AT THE START TO TRY AND PROVIDE A SOURCE OF MOTIVATION FOR THE STORY \*\*\*
+
+A quick bit of research on wikipedia allowed me to add lines roughly seperating the different periods of recent Afghan history.
 
 -   Afghanistan was ruled by monarchy until the last king Mohammed Zahir Shah was overthrown by his cousin Mohammed Daoud Khan in 1973.
 
@@ -2443,3 +2453,98 @@ This gives us what is quite an interesting graph for a region that has suffered 
 -   By 1989 the USSR had given up on its campaign in the region. From 1992-1996 there was a civil war which ended with the Taliban taking control.
 
 -   In 2001 the USA and it's allies launched Operation Enduring Freedom as a response to the September 11 terrorist attacks and the beginning of a massive campaign of rebuilding and investing in the region.
+
+As we have the other data sets we can have a quick look at the fertilizer yield for Afghanistan.
+
+``` r
+fertilizer_red %>% 
+  filter(country=="Afghanistan") %>% 
+  ggplot(aes(x=date,y=FertilizerKgPerHectare)) + 
+  geom_point() + 
+  geom_line() +
+  ggtitle("FertilizerPerHectare in Afghanistan")
+```
+
+![](agricultural_data_files/figure-markdown_github/unnamed-chunk-23-1.png)
+
+``` r
+tractors_red %>% filter(country == "Afghanistan") %>% 
+  ggplot(aes(x=date,y=TractorsPer100Sqkm)) +
+  geom_point()+
+  geom_line()+
+  ggtitle("Tractor usage in Afghanistan")
+```
+
+![](agricultural_data_files/figure-markdown_github/unnamed-chunk-24-1.png)
+
+``` r
+irrigation_red %>%
+  filter(country=="Afghanistan") %>% 
+  ggplot(aes(x=date,y=IrrigationPercentOfLand)) +
+  geom_point() +
+  geom_line()+
+  ggtitle("Irrigation in Afghanistan")
+```
+
+![](agricultural_data_files/figure-markdown_github/unnamed-chunk-25-1.png)
+
+As individual plots, these do not tell much of a story. We should combine them all together.
+
+``` r
+afghan_cereal <- cereal_yield_red %>% 
+  filter(country=="Afghanistan")
+afghan_irrigation <- irrigation_red %>%
+  filter(country=="Afghanistan")
+afghan_fertilizer <- fertilizer_red %>% 
+  filter(country=="Afghanistan")
+afghan_tractors <- tractors_red %>% 
+  filter(country=="Afghanistan")
+
+afghan_combined <- afghan_cereal %>% 
+  left_join(afghan_fertilizer) %>% 
+  left_join(afghan_irrigation) %>% 
+  left_join(afghan_tractors)
+```
+
+    ## Joining, by = c("iso3c", "country", "date")
+    ## Joining, by = c("iso3c", "country", "date")
+    ## Joining, by = c("iso3c", "country", "date")
+
+``` r
+afghan_combined %>% 
+  select(-c(iso3c,country)) %>% 
+  gather(key,value,-date) %>% 
+  ggplot(aes(x=date,y=value)) +
+  facet_wrap(facets=vars(key),ncol=1, scales="free_y")+
+  geom_point() +
+  geom_line()
+```
+
+    ## Warning: Removed 100 rows containing missing values (geom_point).
+
+    ## Warning: Removed 17 rows containing missing values (geom_path).
+
+![](agricultural_data_files/figure-markdown_github/unnamed-chunk-26-1.png)
+
+When taken together we can see that these datasets do not have a significant period of overlap for Afghanistan.
+
+Returning to the histograms
+---------------------------
+
+    ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+
+![](agricultural_data_files/figure-markdown_github/unnamed-chunk-27-1.png)
+
+    ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+
+![](agricultural_data_files/figure-markdown_github/unnamed-chunk-28-1.png)
+
+    ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+
+![](agricultural_data_files/figure-markdown_github/unnamed-chunk-29-1.png)
+
+    ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+
+![](agricultural_data_files/figure-markdown_github/unnamed-chunk-30-1.png)
+
+When we examine each of these histograms in turn we see that the cereal yield and fertilizer datasets mostly consist of countries with data points for all countries in the years they cover. The fertilizer and tractor datasets cover a far shorter range of time than the cereal yield - approx 15 years vs 50 years. If we want to study the relationship of these variables we are only going to be able to do it for the 15 years where both data sets exist. This same logic applies for our other datasets (tractors and irrigation).
