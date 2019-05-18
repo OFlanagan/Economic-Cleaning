@@ -121,31 +121,31 @@ Some notes on what we can see so far:
 ```{r}
 irrigation_red <- irrigation %>% 
   select(iso3c, country, date, value) %>% 
-  rename(irrigation_percent_of_land = value)
+  rename(IrrigationPercentOfLand = value)
 
-irrigation_red
+irrigation_red %>% head() %>% kable()
 ```
 
 ```{r}
 tractors_red <- tractors %>% 
   select(iso3c, country, date, value) %>% 
-  rename(tractors_per_100sqkm = value)
+  rename(TractorsPer100Sqkm = value)
 
-tractors_red
+tractors_red %>% head() %>% kable()
 ```
 
 ```{r}
 fertilizer_red <- fertilizer %>% 
   select(iso3c, country, date, value) %>% 
-  rename(fertilizer_kg_per_hectare = value)
-fertilizer_red
+  rename(FertilizerKgPerHectare = value)
+fertilizer_red %>% head() %>% kable()
 ```
 
 ```{r}
 cereal_yield_red <- cereal_yield %>% 
   select(iso3c, country, date, value) %>% 
-  rename(cereal_yield_kg_per_heactare = value)
-cereal_yield_red
+  rename(CerealYieldKgPerHectare = value)
+cereal_yield_red %>% head() %>% kable()
 ```
 
 ## Removing non countries
@@ -161,16 +161,146 @@ The easiest way to remove the non-countries from the data set is to join onto th
 
 
 ```{r}
-df <- countries %>% left_join(irrigation_red %>% select(-country),by="iso3c") %>% 
+df <- countries %>%
+    left_join(irrigation_red %>% select(-country),by="iso3c") %>% 
     left_join(tractors_red %>% select(-country),by=c("iso3c","date")) %>% 
     left_join(fertilizer_red %>% select(-country),by=c("iso3c","date")) %>% 
-    left_join(cereal_yield_red %>% select(-country),by=c("iso3c","date")) %>% head() %>% kable()
+    left_join(cereal_yield_red %>% select(-country),by=c("iso3c","date"))
 
 ```
 
 
 
 ```{r}
+df %>% head() %>% kable()
+```
+
+```{r}
+df %>% summary()
+```
+We can see we have many NAs in our dataset. It seems that a lot of rows are missing longitude and lattitude data, and more are missing date. My guess would be that a lot of rows are missing values in a lot of columns and these are for countries like Aruba. We should start by looking at the columns where the data is missing from the fewest rows. This will allow us to potentially reduce the Na's from most rows.
+
+```{r}
+df %>% filter(is.na(long)) %>% head() %>%  kable()
 
 ```
+When we do this we see that these are indeed rows for non-countries - we don't care about them.
+
+```{r}
+df <- df %>% filter(!is.na(long))
+df %>% summary()
+```
+
+Working off the same strategy of investigating the columns with the least rows missing we can look at date.
+
+```{r}
+df %>% filter(is.na(date)) %>% head() %>%  kable()
+```
+
+These rows are for countries that we may actually be interested in. It may be that there is simply not data available for these coutnries, or it may be something else. This deserves investigation.
+
+```{r}
+countries_with_one_row <- irrigation_red %>% 
+  #group dataframe by country name
+  group_by(country) %>% 
+  #count the number of rows - this is the number of years of data
+  summarise(n=n()) %>% 
+  #filter to only have countries with a single row
+  filter(n == 1)
+
+irrigation_red %>% 
+  #filter the original data set to only contain the rows for countries with single rows
+  filter(country %in% countries_with_one_row$country) %>%
+  head() %>% 
+  kable()
+
+```
+
+When we do this analysis, we see that the issue is that the dataset does not have data for all years for all countries.
+We can get a better idea of this by making a histogram.
+
+```{r}
+irrigation_red %>% 
+  #group dataframe by country name
+  group_by(country) %>% 
+  #count the number of rows - this is the number of years of data
+  summarise(n=n()) %>% 
+  ggplot(aes(n)) + geom_histogram()
+
+```
+We can see straight away that there are only 13 countries in our data set which span the whole range.
+At this stage we could ask if the countries with less than the full range are a continuous range (i.e. 2005-2008), or a number of sparse points accross the 16 years.
+Before digging deeper into that minor question, it would be better to investigate this for the other data sets.
+
+```{r}
+tractors_red %>% 
+  #group dataframe by country name
+  group_by(country) %>% 
+  #count the number of rows - this is the number of years of data
+  summarise(n=n()) %>% 
+  ggplot(aes(n)) + geom_histogram()
+
+```
+
+```{r}
+fertilizer_red %>% 
+  #group dataframe by country name
+  group_by(country) %>% 
+  #count the number of rows - this is the number of years of data
+  summarise(n=n()) %>% 
+  ggplot(aes(n)) + geom_histogram()
+```
+
+```{r}
+cereal_yield_red %>% 
+  #group dataframe by country name
+  group_by(country) %>% 
+  #count the number of rows - this is the number of years of data
+  summarise(n=n()) %>% 
+  ggplot(aes(n)) + geom_histogram()
+```
+
+It is interesting that cereal_yield and tractors have a max number of rows per country of approximately 50 while fertilzier and irrigation ahve approx 16.
+
+```{r}
+cereal_yield_red %>% 
+  group_by(country) %>% 
+  summarise(n=n()) %>% 
+  arrange(desc(n))
+```
+
+Afghanistan has a 57 rows so we might as well pick that.
+An easy way of getting an idea of the full range of the data is a quick plot.
+```{r}
+cereal_yield_red %>% filter(country=="Afghanistan") %>% 
+  ggplot(aes(x=date,y=CerealYieldKgPerHectare)) + 
+  geom_point() + 
+  geom_line() +
+  #Monarchy deposed
+  geom_vline(xintercept =  1973,color="sky blue") +
+  #start of Soviet Afghan War
+  geom_vline(xintercept =  1979,color="red") +
+  #end of Soviet Afghan War
+  geom_vline(xintercept = 1989,color="red") +
+  #Start of civil war
+  geom_vline(xintercept = 1992,color="dark green") +
+  #end of civil war and start of Taliban rule
+  geom_vline(xintercept = 1996,color="dark green") +
+  #Start of Operation Enduring Freedom
+  geom_vline(xintercept = 2001,color="blue") 
+  
+```
+
+This gives us what is quite an interesting graph for a region that has suffered decades of turmoil. 
+A quick bit of research on wikipedia allowed me to add lines roughly seperating the different periods of recent Afghan history.
+
+ * Afghanistan was ruled by monarchy until the last king Mohammed Zahir Shah was overthrown by his cousin Mohammed Daoud Khan
+in 1973.
+
+ * In 1978 Afghanistan, the Saur Revolution led to an unpopular, aggresively modernising, socialist government backed by the USSR military.
+
+ * By 1989 the USSR had given up on its campaign in the region.
+From 1992-1996 there was a civil war which ended with the Taliban taking control.
+
+ * In 2001 the USA and it's allies launched Operation Enduring Freedom as a response to the September 11 terrorist attacks and the beginning of a massive campaign of rebuilding and investing in the region.
 

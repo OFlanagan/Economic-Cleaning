@@ -909,101 +909,464 @@ Reshaping
 ``` r
 irrigation_red <- irrigation %>% 
   select(iso3c, country, date, value) %>% 
-  rename(irrigation_percent_of_land = value)
+  rename(IrrigationPercentOfLand = value)
 
-irrigation_red
+irrigation_red %>% head() %>% kable()
 ```
 
-    ## # A tibble: 856 x 4
-    ##    iso3c country      date irrigation_percent_of_land
-    ##    <chr> <chr>       <dbl>                      <dbl>
-    ##  1 AFG   Afghanistan  2016                       6.48
-    ##  2 AFG   Afghanistan  2015                       5.71
-    ##  3 AFG   Afghanistan  2014                       5.74
-    ##  4 AFG   Afghanistan  2013                       5.52
-    ##  5 AFG   Afghanistan  2012                       5.47
-    ##  6 AFG   Afghanistan  2011                       5.39
-    ##  7 AFG   Afghanistan  2010                       5.00
-    ##  8 AFG   Afghanistan  2009                       4.84
-    ##  9 AFG   Afghanistan  2008                       5.78
-    ## 10 AFG   Afghanistan  2007                       5.94
-    ## # ... with 846 more rows
-
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+iso3c
+</th>
+<th style="text-align:left;">
+country
+</th>
+<th style="text-align:right;">
+date
+</th>
+<th style="text-align:right;">
+IrrigationPercentOfLand
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+AFG
+</td>
+<td style="text-align:left;">
+Afghanistan
+</td>
+<td style="text-align:right;">
+2016
+</td>
+<td style="text-align:right;">
+6.481140
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+AFG
+</td>
+<td style="text-align:left;">
+Afghanistan
+</td>
+<td style="text-align:right;">
+2015
+</td>
+<td style="text-align:right;">
+5.710894
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+AFG
+</td>
+<td style="text-align:left;">
+Afghanistan
+</td>
+<td style="text-align:right;">
+2014
+</td>
+<td style="text-align:right;">
+5.742548
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+AFG
+</td>
+<td style="text-align:left;">
+Afghanistan
+</td>
+<td style="text-align:right;">
+2013
+</td>
+<td style="text-align:right;">
+5.518333
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+AFG
+</td>
+<td style="text-align:left;">
+Afghanistan
+</td>
+<td style="text-align:right;">
+2012
+</td>
+<td style="text-align:right;">
+5.465576
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+AFG
+</td>
+<td style="text-align:left;">
+Afghanistan
+</td>
+<td style="text-align:right;">
+2011
+</td>
+<td style="text-align:right;">
+5.391717
+</td>
+</tr>
+</tbody>
+</table>
 ``` r
 tractors_red <- tractors %>% 
   select(iso3c, country, date, value) %>% 
-  rename(tractors_per_100sqkm = value)
+  rename(TractorsPer100Sqkm = value)
 
-tractors_red
+tractors_red %>% head() %>% kable()
 ```
 
-    ## # A tibble: 7,444 x 4
-    ##    iso3c country     date tractors_per_100sqkm
-    ##    <chr> <chr>      <dbl>                <dbl>
-    ##  1 ARB   Arab World  2000                154. 
-    ##  2 ARB   Arab World  1999                127. 
-    ##  3 ARB   Arab World  1998                115. 
-    ##  4 ARB   Arab World  1997                114. 
-    ##  5 ARB   Arab World  1996                112. 
-    ##  6 ARB   Arab World  1995                112. 
-    ##  7 ARB   Arab World  1994                103. 
-    ##  8 ARB   Arab World  1993                101. 
-    ##  9 ARB   Arab World  1992                 96.2
-    ## 10 ARB   Arab World  1991                 97.4
-    ## # ... with 7,434 more rows
-
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+iso3c
+</th>
+<th style="text-align:left;">
+country
+</th>
+<th style="text-align:right;">
+date
+</th>
+<th style="text-align:right;">
+TractorsPer100Sqkm
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+ARB
+</td>
+<td style="text-align:left;">
+Arab World
+</td>
+<td style="text-align:right;">
+2000
+</td>
+<td style="text-align:right;">
+153.9730
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ARB
+</td>
+<td style="text-align:left;">
+Arab World
+</td>
+<td style="text-align:right;">
+1999
+</td>
+<td style="text-align:right;">
+126.8138
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ARB
+</td>
+<td style="text-align:left;">
+Arab World
+</td>
+<td style="text-align:right;">
+1998
+</td>
+<td style="text-align:right;">
+115.2138
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ARB
+</td>
+<td style="text-align:left;">
+Arab World
+</td>
+<td style="text-align:right;">
+1997
+</td>
+<td style="text-align:right;">
+113.5813
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ARB
+</td>
+<td style="text-align:left;">
+Arab World
+</td>
+<td style="text-align:right;">
+1996
+</td>
+<td style="text-align:right;">
+111.9251
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ARB
+</td>
+<td style="text-align:left;">
+Arab World
+</td>
+<td style="text-align:right;">
+1995
+</td>
+<td style="text-align:right;">
+112.2665
+</td>
+</tr>
+</tbody>
+</table>
 ``` r
 fertilizer_red <- fertilizer %>% 
   select(iso3c, country, date, value) %>% 
-  rename(fertilizer_kg_per_hectare = value)
-fertilizer_red
+  rename(FertilizerKgPerHectare = value)
+fertilizer_red %>% head() %>% kable()
 ```
 
-    ## # A tibble: 2,985 x 4
-    ##    iso3c country     date fertilizer_kg_per_hectare
-    ##    <chr> <chr>      <dbl>                     <dbl>
-    ##  1 ARB   Arab World  2016                      68.4
-    ##  2 ARB   Arab World  2015                      73.3
-    ##  3 ARB   Arab World  2014                      68.2
-    ##  4 ARB   Arab World  2013                      62.4
-    ##  5 ARB   Arab World  2012                      64.1
-    ##  6 ARB   Arab World  2011                     105. 
-    ##  7 ARB   Arab World  2010                      92.2
-    ##  8 ARB   Arab World  2009                      82.5
-    ##  9 ARB   Arab World  2008                     101. 
-    ## 10 ARB   Arab World  2007                      92.0
-    ## # ... with 2,975 more rows
-
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+iso3c
+</th>
+<th style="text-align:left;">
+country
+</th>
+<th style="text-align:right;">
+date
+</th>
+<th style="text-align:right;">
+FertilizerKgPerHectare
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+ARB
+</td>
+<td style="text-align:left;">
+Arab World
+</td>
+<td style="text-align:right;">
+2016
+</td>
+<td style="text-align:right;">
+68.35913
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ARB
+</td>
+<td style="text-align:left;">
+Arab World
+</td>
+<td style="text-align:right;">
+2015
+</td>
+<td style="text-align:right;">
+73.25786
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ARB
+</td>
+<td style="text-align:left;">
+Arab World
+</td>
+<td style="text-align:right;">
+2014
+</td>
+<td style="text-align:right;">
+68.16071
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ARB
+</td>
+<td style="text-align:left;">
+Arab World
+</td>
+<td style="text-align:right;">
+2013
+</td>
+<td style="text-align:right;">
+62.39705
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ARB
+</td>
+<td style="text-align:left;">
+Arab World
+</td>
+<td style="text-align:right;">
+2012
+</td>
+<td style="text-align:right;">
+64.09569
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ARB
+</td>
+<td style="text-align:left;">
+Arab World
+</td>
+<td style="text-align:right;">
+2011
+</td>
+<td style="text-align:right;">
+104.89946
+</td>
+</tr>
+</tbody>
+</table>
 ``` r
 cereal_yield_red <- cereal_yield %>% 
   select(iso3c, country, date, value) %>% 
-  rename(cereal_yield_kg_per_heactare = value)
-cereal_yield_red
+  rename(CerealYieldKgPerHectare = value)
+cereal_yield_red %>% head() %>% kable()
 ```
 
-    ## # A tibble: 11,781 x 4
-    ##    iso3c country     date cereal_yield_kg_per_heactare
-    ##    <chr> <chr>      <dbl>                        <dbl>
-    ##  1 ARB   Arab World  2017                        2024.
-    ##  2 ARB   Arab World  2016                        1745.
-    ##  3 ARB   Arab World  2015                        2119.
-    ##  4 ARB   Arab World  2014                        1796.
-    ##  5 ARB   Arab World  2013                        1966.
-    ##  6 ARB   Arab World  2012                        2031.
-    ##  7 ARB   Arab World  2011                        2523.
-    ##  8 ARB   Arab World  2010                        2241.
-    ##  9 ARB   Arab World  2009                        2615.
-    ## 10 ARB   Arab World  2008                        2296.
-    ## # ... with 11,771 more rows
-
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+iso3c
+</th>
+<th style="text-align:left;">
+country
+</th>
+<th style="text-align:right;">
+date
+</th>
+<th style="text-align:right;">
+CerealYieldKgPerHectare
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+ARB
+</td>
+<td style="text-align:left;">
+Arab World
+</td>
+<td style="text-align:right;">
+2017
+</td>
+<td style="text-align:right;">
+2023.717
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ARB
+</td>
+<td style="text-align:left;">
+Arab World
+</td>
+<td style="text-align:right;">
+2016
+</td>
+<td style="text-align:right;">
+1744.945
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ARB
+</td>
+<td style="text-align:left;">
+Arab World
+</td>
+<td style="text-align:right;">
+2015
+</td>
+<td style="text-align:right;">
+2119.373
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ARB
+</td>
+<td style="text-align:left;">
+Arab World
+</td>
+<td style="text-align:right;">
+2014
+</td>
+<td style="text-align:right;">
+1795.737
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ARB
+</td>
+<td style="text-align:left;">
+Arab World
+</td>
+<td style="text-align:right;">
+2013
+</td>
+<td style="text-align:right;">
+1966.458
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ARB
+</td>
+<td style="text-align:left;">
+Arab World
+</td>
+<td style="text-align:right;">
+2012
+</td>
+<td style="text-align:right;">
+2031.372
+</td>
+</tr>
+</tbody>
+</table>
 Removing non countries
 ----------------------
 
+The easiest way to remove the non-countries from the data set is to join onto the countries dataframe.
+
 ``` r
-countries %>% left_join(irrigation_red %>% select(-country),by="iso3c") %>% 
-  left_join(tractors_red %>% select(-country),by=c("iso3c","date")) %>% 
-  left_join(fertilizer_red %>% select(-country),by=c("iso3c","date")) %>% 
-  left_join(cereal_yield_red %>% select(-country),by=c("iso3c","date")) %>% head() %>% kable()
+df <- countries %>%
+    left_join(irrigation_red %>% select(-country),by="iso3c") %>% 
+    left_join(tractors_red %>% select(-country),by=c("iso3c","date")) %>% 
+    left_join(fertilizer_red %>% select(-country),by=c("iso3c","date")) %>% 
+    left_join(cereal_yield_red %>% select(-country),by=c("iso3c","date"))
+```
+
+``` r
+df %>% head() %>% kable()
 ```
 
 <table>
@@ -1031,16 +1394,16 @@ income
 date
 </th>
 <th style="text-align:right;">
-irrigation\_percent\_of\_land
+IrrigationPercentOfLand
 </th>
 <th style="text-align:right;">
-tractors\_per\_100sqkm
+TractorsPer100Sqkm
 </th>
 <th style="text-align:right;">
-fertilizer\_kg\_per\_hectare
+FertilizerKgPerHectare
 </th>
 <th style="text-align:right;">
-cereal\_yield\_kg\_per\_heactare
+CerealYieldKgPerHectare
 </th>
 </tr>
 </thead>
@@ -1257,3 +1620,826 @@ NA
 </tr>
 </tbody>
 </table>
+``` r
+df %>% summary()
+```
+
+    ##     iso3c             country               long               lat        
+    ##  Length:1040        Length:1040        Min.   :-175.216   Min.   :-41.29  
+    ##  Class :character   Class :character   1st Qu.:   7.434   1st Qu.: 13.70  
+    ##  Mode  :character   Mode  :character   Median :  26.098   Median : 34.52  
+    ##                                        Mean   :  25.569   Mean   : 26.66  
+    ##                                        3rd Qu.:  51.445   3rd Qu.: 44.45  
+    ##                                        Max.   : 179.090   Max.   : 64.18  
+    ##                                        NA's   :117        NA's   :117     
+    ##     region             income               date     
+    ##  Length:1040        Length:1040        Min.   :2001  
+    ##  Class :character   Class :character   1st Qu.:2005  
+    ##  Mode  :character   Mode  :character   Median :2008  
+    ##                                        Mean   :2008  
+    ##                                        3rd Qu.:2012  
+    ##                                        Max.   :2016  
+    ##                                        NA's   :184   
+    ##  IrrigationPercentOfLand TractorsPer100Sqkm FertilizerKgPerHectare
+    ##  Min.   : 0.000          Min.   :   1.864   Min.   :   0.3081     
+    ##  1st Qu.: 1.232          1st Qu.: 106.260   1st Qu.:  37.5067     
+    ##  Median : 5.266          Median : 163.511   Median : 100.2493     
+    ##  Mean   :10.076          Mean   : 534.825   Mean   : 154.9184     
+    ##  3rd Qu.:13.376          3rd Qu.: 541.363   3rd Qu.: 180.8365     
+    ##  Max.   :59.711          Max.   :6438.452   Max.   :2304.6079     
+    ##  NA's   :184             NA's   :874        NA's   :272           
+    ##  CerealYieldKgPerHectare
+    ##  Min.   :  176.3        
+    ##  1st Qu.: 1999.1        
+    ##  Median : 2944.8        
+    ##  Mean   : 3400.2        
+    ##  3rd Qu.: 4333.9        
+    ##  Max.   :28130.1        
+    ##  NA's   :209
+
+We can see we have many NAs in our dataset. It seems that a lot of rows are missing longitude and lattitude data, and more are missing date. My guess would be that a lot of rows are missing values in a lot of columns and these are for countries like Aruba. We should start by looking at the columns where the data is missing from the fewest rows. This will allow us to potentially reduce the Na's from most rows.
+
+``` r
+df %>% filter(is.na(long)) %>% head() %>%  kable()
+```
+
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+iso3c
+</th>
+<th style="text-align:left;">
+country
+</th>
+<th style="text-align:right;">
+long
+</th>
+<th style="text-align:right;">
+lat
+</th>
+<th style="text-align:left;">
+region
+</th>
+<th style="text-align:left;">
+income
+</th>
+<th style="text-align:right;">
+date
+</th>
+<th style="text-align:right;">
+IrrigationPercentOfLand
+</th>
+<th style="text-align:right;">
+TractorsPer100Sqkm
+</th>
+<th style="text-align:right;">
+FertilizerKgPerHectare
+</th>
+<th style="text-align:right;">
+CerealYieldKgPerHectare
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+AFR
+</td>
+<td style="text-align:left;">
+Africa
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:left;">
+Aggregates
+</td>
+<td style="text-align:left;">
+Aggregates
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ANR
+</td>
+<td style="text-align:left;">
+Andean Region
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:left;">
+Aggregates
+</td>
+<td style="text-align:left;">
+Aggregates
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ARB
+</td>
+<td style="text-align:left;">
+Arab World
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:left;">
+Aggregates
+</td>
+<td style="text-align:left;">
+Aggregates
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+BEA
+</td>
+<td style="text-align:left;">
+East Asia & Pacific (IBRD-only countries)
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:left;">
+Aggregates
+</td>
+<td style="text-align:left;">
+Aggregates
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+BEC
+</td>
+<td style="text-align:left;">
+Europe & Central Asia (IBRD-only countries)
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:left;">
+Aggregates
+</td>
+<td style="text-align:left;">
+Aggregates
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+BHI
+</td>
+<td style="text-align:left;">
+IBRD countries classified as high income
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:left;">
+Aggregates
+</td>
+<td style="text-align:left;">
+Aggregates
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+</tbody>
+</table>
+When we do this we see that these are indeed rows for non-countries - we don't care about them.
+
+``` r
+df <- df %>% filter(!is.na(long))
+df %>% summary()
+```
+
+    ##     iso3c             country               long               lat        
+    ##  Length:923         Length:923         Min.   :-175.216   Min.   :-41.29  
+    ##  Class :character   Class :character   1st Qu.:   7.434   1st Qu.: 13.70  
+    ##  Mode  :character   Mode  :character   Median :  26.098   Median : 34.52  
+    ##                                        Mean   :  25.569   Mean   : 26.66  
+    ##                                        3rd Qu.:  51.445   3rd Qu.: 44.45  
+    ##                                        Max.   : 179.090   Max.   : 64.18  
+    ##                                                                           
+    ##     region             income               date     
+    ##  Length:923         Length:923         Min.   :2001  
+    ##  Class :character   Class :character   1st Qu.:2005  
+    ##  Mode  :character   Mode  :character   Median :2008  
+    ##                                        Mean   :2008  
+    ##                                        3rd Qu.:2012  
+    ##                                        Max.   :2016  
+    ##                                        NA's   :93    
+    ##  IrrigationPercentOfLand TractorsPer100Sqkm FertilizerKgPerHectare
+    ##  Min.   : 0.000          Min.   :   1.864   Min.   :   0.3081     
+    ##  1st Qu.: 1.199          1st Qu.: 106.260   1st Qu.:  37.5067     
+    ##  Median : 5.372          Median : 163.511   Median : 100.2493     
+    ##  Mean   :10.229          Mean   : 534.825   Mean   : 154.9184     
+    ##  3rd Qu.:13.621          3rd Qu.: 541.363   3rd Qu.: 180.8365     
+    ##  Max.   :59.711          Max.   :6438.452   Max.   :2304.6079     
+    ##  NA's   :93              NA's   :757        NA's   :155           
+    ##  CerealYieldKgPerHectare
+    ##  Min.   :  176.3        
+    ##  1st Qu.: 2017.0        
+    ##  Median : 2969.9        
+    ##  Mean   : 3423.3        
+    ##  3rd Qu.: 4351.7        
+    ##  Max.   :28130.1        
+    ##  NA's   :104
+
+Working off the same strategy of investigating the columns with the least rows missing we can look at date.
+
+``` r
+df %>% filter(is.na(date)) %>% head() %>%  kable()
+```
+
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+iso3c
+</th>
+<th style="text-align:left;">
+country
+</th>
+<th style="text-align:right;">
+long
+</th>
+<th style="text-align:right;">
+lat
+</th>
+<th style="text-align:left;">
+region
+</th>
+<th style="text-align:left;">
+income
+</th>
+<th style="text-align:right;">
+date
+</th>
+<th style="text-align:right;">
+IrrigationPercentOfLand
+</th>
+<th style="text-align:right;">
+TractorsPer100Sqkm
+</th>
+<th style="text-align:right;">
+FertilizerKgPerHectare
+</th>
+<th style="text-align:right;">
+CerealYieldKgPerHectare
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+ABW
+</td>
+<td style="text-align:left;">
+Aruba
+</td>
+<td style="text-align:right;">
+-70.0167
+</td>
+<td style="text-align:right;">
+12.51670
+</td>
+<td style="text-align:left;">
+Latin America & Caribbean
+</td>
+<td style="text-align:left;">
+High income
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+AGO
+</td>
+<td style="text-align:left;">
+Angola
+</td>
+<td style="text-align:right;">
+13.2420
+</td>
+<td style="text-align:right;">
+-8.81155
+</td>
+<td style="text-align:left;">
+Sub-Saharan Africa
+</td>
+<td style="text-align:left;">
+Lower middle income
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+AND
+</td>
+<td style="text-align:left;">
+Andorra
+</td>
+<td style="text-align:right;">
+1.5218
+</td>
+<td style="text-align:right;">
+42.50750
+</td>
+<td style="text-align:left;">
+Europe & Central Asia
+</td>
+<td style="text-align:left;">
+High income
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ASM
+</td>
+<td style="text-align:left;">
+American Samoa
+</td>
+<td style="text-align:right;">
+-170.6910
+</td>
+<td style="text-align:right;">
+-14.28460
+</td>
+<td style="text-align:left;">
+East Asia & Pacific
+</td>
+<td style="text-align:left;">
+Upper middle income
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ATG
+</td>
+<td style="text-align:left;">
+Antigua and Barbuda
+</td>
+<td style="text-align:right;">
+-61.8456
+</td>
+<td style="text-align:right;">
+17.11750
+</td>
+<td style="text-align:left;">
+Latin America & Caribbean
+</td>
+<td style="text-align:left;">
+High income
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+BDI
+</td>
+<td style="text-align:left;">
+Burundi
+</td>
+<td style="text-align:right;">
+29.3639
+</td>
+<td style="text-align:right;">
+-3.37840
+</td>
+<td style="text-align:left;">
+Sub-Saharan Africa
+</td>
+<td style="text-align:left;">
+Low income
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+</tbody>
+</table>
+These rows are for countries that we may actually be interested in. It may be that there is simply not data available for these coutnries, or it may be something else. This deserves investigation.
+
+``` r
+countries_with_one_row <- irrigation_red %>% 
+  #group dataframe by country name
+  group_by(country) %>% 
+  #count the number of rows - this is the number of years of data
+  summarise(n=n()) %>% 
+  #filter to only have countries with a single row
+  filter(n == 1)
+
+irrigation_red %>% 
+  #filter the original data set to only contain the rows for countries with single rows
+  filter(country %in% countries_with_one_row$country) %>%
+  head() %>% 
+  kable()
+```
+
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+iso3c
+</th>
+<th style="text-align:left;">
+country
+</th>
+<th style="text-align:right;">
+date
+</th>
+<th style="text-align:right;">
+IrrigationPercentOfLand
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+BHR
+</td>
+<td style="text-align:left;">
+Bahrain
+</td>
+<td style="text-align:right;">
+2001
+</td>
+<td style="text-align:right;">
+43.478262
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CPV
+</td>
+<td style="text-align:left;">
+Cabo Verde
+</td>
+<td style="text-align:right;">
+2004
+</td>
+<td style="text-align:right;">
+4.640000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CHL
+</td>
+<td style="text-align:left;">
+Chile
+</td>
+<td style="text-align:right;">
+2007
+</td>
+<td style="text-align:right;">
+6.953979
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SWZ
+</td>
+<td style="text-align:left;">
+Eswatini
+</td>
+<td style="text-align:right;">
+2002
+</td>
+<td style="text-align:right;">
+3.663399
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GRD
+</td>
+<td style="text-align:left;">
+Grenada
+</td>
+<td style="text-align:right;">
+2008
+</td>
+<td style="text-align:right;">
+2.857143
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GTM
+</td>
+<td style="text-align:left;">
+Guatemala
+</td>
+<td style="text-align:right;">
+2003
+</td>
+<td style="text-align:right;">
+6.163112
+</td>
+</tr>
+</tbody>
+</table>
+When we do this analysis, we see that the issue is that the dataset does not have data for all years for all countries. We can get a better idea of this by making a histogram.
+
+``` r
+irrigation_red %>% 
+  #group dataframe by country name
+  group_by(country) %>% 
+  #count the number of rows - this is the number of years of data
+  summarise(n=n()) %>% 
+  ggplot(aes(n)) + geom_histogram()
+```
+
+    ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+
+![](agricultural_data_files/figure-markdown_github/unnamed-chunk-17-1.png) We can see straight away that there are only 13 countries in our data set which span the whole range. At this stage we could ask if the countries with less than the full range are a continuous range (i.e. 2005-2008), or a number of sparse points accross the 16 years. Before digging deeper into that minor question, it would be better to investigate this for the other data sets.
+
+``` r
+tractors_red %>% 
+  #group dataframe by country name
+  group_by(country) %>% 
+  #count the number of rows - this is the number of years of data
+  summarise(n=n()) %>% 
+  ggplot(aes(n)) + geom_histogram()
+```
+
+    ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+
+![](agricultural_data_files/figure-markdown_github/unnamed-chunk-18-1.png)
+
+``` r
+fertilizer_red %>% 
+  #group dataframe by country name
+  group_by(country) %>% 
+  #count the number of rows - this is the number of years of data
+  summarise(n=n()) %>% 
+  ggplot(aes(n)) + geom_histogram()
+```
+
+    ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+
+![](agricultural_data_files/figure-markdown_github/unnamed-chunk-19-1.png)
+
+``` r
+cereal_yield_red %>% 
+  #group dataframe by country name
+  group_by(country) %>% 
+  #count the number of rows - this is the number of years of data
+  summarise(n=n()) %>% 
+  ggplot(aes(n)) + geom_histogram()
+```
+
+    ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+
+![](agricultural_data_files/figure-markdown_github/unnamed-chunk-20-1.png)
+
+It is interesting that cereal\_yield and tractors have a max number of rows per country of approximately 50 while fertilzier and irrigation ahve approx 16.
+
+``` r
+cereal_yield_red %>% 
+  group_by(country) %>% 
+  summarise(n=n()) %>% 
+  arrange(desc(n))
+```
+
+    ## # A tibble: 227 x 2
+    ##    country          n
+    ##    <chr>        <int>
+    ##  1 Afghanistan     57
+    ##  2 Albania         57
+    ##  3 Algeria         57
+    ##  4 Angola          57
+    ##  5 Arab World      57
+    ##  6 Argentina       57
+    ##  7 Australia       57
+    ##  8 Austria         57
+    ##  9 Bahamas, The    57
+    ## 10 Bangladesh      57
+    ## # ... with 217 more rows
+
+Afghanistan has a 57 rows so we might as well pick that. An easy way of getting an idea of the full range of the data is a quick plot.
+
+``` r
+cereal_yield_red %>% filter(country=="Afghanistan") %>% 
+  ggplot(aes(x=date,y=CerealYieldKgPerHectare)) + 
+  geom_point() + 
+  geom_line() +
+  #Monarchy deposed
+  geom_vline(xintercept =  1973,color="sky blue") +
+  #start of Soviet Afghan War
+  geom_vline(xintercept =  1979,color="red") +
+  #end of Soviet Afghan War
+  geom_vline(xintercept = 1989,color="red") +
+  #Start of civil war
+  geom_vline(xintercept = 1992,color="dark green") +
+  #end of civil war and start of Taliban rule
+  geom_vline(xintercept = 1996,color="dark green") +
+  #Start of Operation Enduring Freedom
+  geom_vline(xintercept = 2001,color="blue") 
+```
+
+![](agricultural_data_files/figure-markdown_github/unnamed-chunk-22-1.png)
+
+This gives us what is quite an interesting graph for a region that has suffered decades of turmoil. A quick bit of research on wikipedia allowed me to add lines roughly seperating the different periods of recent Afghan history.
+
+-   Afghanistan was ruled by monarchy until the last king Mohammed Zahir Shah was overthrown by his cousin Mohammed Daoud Khan in 1973.
+
+-   In 1978 Afghanistan, the Saur Revolution led to an unpopular, aggresively modernising, socialist government backed by the USSR military.
+
+-   By 1989 the USSR had given up on its campaign in the region. From 1992-1996 there was a civil war which ended with the Taliban taking control.
+
+-   In 2001 the USA and it's allies launched Operation Enduring Freedom as a response to the September 11 terrorist attacks and the beginning of a massive campaign of rebuilding and investing in the region.
