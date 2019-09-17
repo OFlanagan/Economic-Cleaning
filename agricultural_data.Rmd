@@ -9,7 +9,8 @@ output:
 
 ---
 
-#Introduction
+# Introduction
+
 This work is a study of some interesting agricultural indicators I came accross while working on some analysis of economic freedom. 
 I believe that explaining techniques, their use, and justifying them is an important part of any data scientists workflow so I will aim to explain my reasoning and justification - practice makes perfect.
 
@@ -44,7 +45,7 @@ This seems like a reasonable application of modelling and I will apply both line
 
 (the countries dataset from world bank might include some other interesting data such as wealth, lat and longitude and similar)
 
-#Data loading and tidying
+# Data loading and tidying
 The data we are planning on using is provided by the world bank. The world bank does provide an API which we could query, but there is an R package available called wbstats which provides easy access to the data we want.
 Information on using that wbstats package can be found here:
 
@@ -178,12 +179,14 @@ df %>% head() %>% kable()
 ```{r}
 df %>% summary()
 ```
+
 We can see we have many NAs in our dataset. It seems that a lot of rows are missing longitude and lattitude data, and more are missing date. My guess would be that a lot of rows are missing values in a lot of columns and these are for countries like Aruba. We should start by looking at the columns where the data is missing from the fewest rows. This will allow us to potentially reduce the Na's from most rows.
 
 ```{r}
 df %>% filter(is.na(long)) %>% head() %>%  kable()
 
 ```
+
 When we do this we see that these are indeed rows for non-countries - we don't care about them.
 
 ```{r}
@@ -197,7 +200,7 @@ Working off the same strategy of investigating the columns with the least rows m
 df %>% filter(is.na(date)) %>% head() %>%  kable()
 ```
 
-These rows are for countries that we may actually be interested in. It may be that there is simply not data available for these coutnries, or it may be something else. This deserves investigation.
+These rows are for countries that we may actually be interested in. It may be that there is simply not data available for these countries, or it may be something else. This deserves investigation.
 
 ```{r}
 countries_with_one_row <- irrigation_red %>% 
@@ -229,6 +232,7 @@ irrigation_red %>%
   ggtitle("Number of years data per country in irrigation dataset")
 
 ```
+
 We can see straight away that there are only 13 countries in our data set which span the whole range.
 At this stage we could ask if the countries with less than the full range are a continuous range (i.e. 2005-2008), or a number of sparse points accross the 16 years.
 Before digging deeper into that minor question, it would be better to investigate this for the other data sets.
@@ -275,6 +279,7 @@ cereal_yield_red %>%
 
 Afghanistan has a 57 rows so we might as well pick that.
 An easy way of getting an idea of the full range of the data is a quick plot.
+
 ```{r}
 cereal_yield_red %>% filter(country=="Afghanistan") %>% 
   ggplot(aes(x=date,y=CerealYieldKgPerHectare)) + 
@@ -313,6 +318,7 @@ From 1992-1996 there was a civil war which ended with the Taliban taking control
  * In 2001 the USA and it's allies launched Operation Enduring Freedom as a response to the September 11 terrorist attacks and the beginning of a massive campaign of rebuilding and investing in the region.
 
 As we have the other data sets we can have a quick look at the fertilizer yield for Afghanistan.
+
 ```{r}
 fertilizer_red %>% 
   filter(country=="Afghanistan") %>% 
@@ -418,6 +424,16 @@ The fertilizer and tractor datasets cover a far shorter range of time than the c
 If we want to study the relationship of these variables we are only going to be able to do it for the 15 years where both data sets exist.
 This same logic applies for our other datasets (tractors and irrigation).
 
+
+# next steps
+ * ensure all data is joined together correctly and a nice table is selected
+ * perform some modelling in a new file (part 2). Use tidymodel tools,
+ start with linear models and test assumptions - look at residuals, find outliers,
+ find good ways to plot residuals and outliers, look at distributions,
+ * look at tools from the StatisticalModels and replicated some of the techniques
+ * after that make a new file (part 3) with tree based methods. start with some decisions trees and investigate them. 
+ * Then move to random forest models as per Jeremy Howard
+ * (part 4) also use the feature importance techniques with linear models. At this point can potentially also throw some other model types at it, demonstrate parsnip. Should include the (decision tree + linear model complex model) and look into what packages exist around it - if there is no package for random forest then write one in parralel.
 
 
 
