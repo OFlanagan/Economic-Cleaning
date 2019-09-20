@@ -11,7 +11,7 @@ output:
 
 # Introduction
 
-This work is a study of some interesting agricultural indicators I came accross while working on some analysis of economic freedom. 
+This work is a study of some interesting agricultural indicators I came across while working on some analysis of economic freedom. 
 I believe that explaining techniques, their use, and justifying them is an important part of any data scientists workflow so I will aim to explain my reasoning and justification - practice makes perfect.
 
 The data I will be using in this post were sourced from the World Bank. A full list of indicators can be found here:
@@ -23,9 +23,9 @@ https://data.worldbank.org/indicator/AG.LND.IRIG.AG.ZS?view=chart
 Agricultural irrigated land % of total agricultural land
 
 https://data.worldbank.org/indicator/AG.LND.TRAC.ZS?view=chart
-Agricultural machienry, tractors per 100 sq. km of arable land
+Agricultural machinery, tractors per 100 sq. km of arable land
 more economic freedom, more machines
-"Quote some of the invisible hand here"
+*** "Quote some of the invisible hand here" ***
 
 https://data.worldbank.org/indicator/AG.YLD.CREL.KG?view=chart
 Cereal yield (kg per hectare)
@@ -437,4 +437,4 @@ This same logic applies for our other datasets (tractors and irrigation).
 
 
 
-
+cereal

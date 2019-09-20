@@ -9,6 +9,7 @@ owen flanagan
       - [Reshaping](#reshaping)
       - [Removing non countries](#removing-non-countries)
       - [Returning to the histograms](#returning-to-the-histograms)
+  - [next steps](#next-steps)
 
 # Introduction
 
@@ -4703,3 +4704,23 @@ tractor datasets cover a far shorter range of time than the cereal yield
 these variables we are only going to be able to do it for the 15 years
 where both data sets exist. This same logic applies for our other
 datasets (tractors and irrigation).
+
+# next steps
+
+  - ensure all data is joined together correctly and a nice table is
+    selected
+  - perform some modelling in a new file (part 2). Use tidymodel tools,
+    start with linear models and test assumptions - look at residuals,
+    find outliers, find good ways to plot residuals and outliers, look
+    at distributions,
+  - look at tools from the StatisticalModels and replicated some of the
+    techniques
+  - after that make a new file (part 3) with tree based methods. start
+    with some decisions trees and investigate them.
+  - Then move to random forest models as per Jeremy Howard
+  - (part 4) also use the feature importance techniques with linear
+    models. At this point can potentially also throw some other model
+    types at it, demonstrate parsnip. Should include the (decision tree
+    + linear model complex model) and look into what packages exist
+    around it - if there is no package for random forest then write one
+    in parralel.
